@@ -1,0 +1,41 @@
+.booking-layout {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  background-color: #f0f5f9; /* نفس لون خلفية Doctolib */
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.booking-main { flex: 2; max-width: 650px; }
+.booking-sidebar { flex: 1; max-width: 350px; }
+
+.white-card {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-top: 15px;
+}
+
+.step-title { color: #052c48; margin-bottom: 25px; font-size: 22px; }
+
+.options-list { border: 1px solid #e2e8f0; border-radius: 8px; }
+
+.option-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 25px;
+  border-bottom: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option-row:hover { background-color: #f8fbff; color: #007ad9; }
+.option-row:last-child { border-bottom: none; }
+.blue-arrow { font-size: 24px; color: #007ad9; }
+
+/* Sidebar Styling */
+.doc-summary { display: flex; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; margin-bottom: 15px; }
+.doc-img-mini { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
+.rdv-summary-details h5 { color: #052c48; margin-bottom: 10px; }
