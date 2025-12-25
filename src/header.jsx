@@ -19,8 +19,7 @@ export default function Header() {
       </div>
 
       <div className="header-menu">
-        {/* Navigate to doctor registration */}
-        <button onClick={() => navigate("/docregister")}>
+       <button onClick={() => navigate("/login-doctor")}>
           ARE YOU A DOCTOR?
         </button>
 

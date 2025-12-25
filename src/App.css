@@ -433,9 +433,77 @@ html, body, #root {
 .custom-shape-divider-bottom svg {
   display: block;
   width: 100%;
-  height: 165px;
+  height: 150px;
 }
 
 .custom-shape-divider-bottom .shape-fill {
   fill: #fde6cf; /* peach */
+}
+/* ================= SPECIALTIES - MIDDLE SIZE ================= */
+
+.specialties-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 12px 18px;
+}
+
+.specialty-card {
+    flex: 0 0 190px;      /* middle size */
+    width: 190px;
+    aspect-ratio: 4 / 3;  /* keeps nice proportions */
+    border-radius: 16px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+
+    background-size: contain;  /* show whole image */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #fde6cf;
+
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.specialty-card:hover,
+.specialty-card:focus {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    outline: none;
+}
+
+.specialty-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 34%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.0));
+    padding-bottom: 8px;
+}
+
+.specialty-overlay h4 {
+    margin: 0;
+    padding: 0 8px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+}
+
+@media (max-width: 640px) {
+  .specialty-card { flex: 0 0 160px; width: 160px; }
+}
+
+h1, h2, h3 {
+  font-family: "Yeseva One", serif;
 }

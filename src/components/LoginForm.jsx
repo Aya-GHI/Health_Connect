@@ -24,7 +24,7 @@ const LoginForm = () => {
     <div className="login-container">
       <div className="login-card">
         <h2>WELCOME BACK!</h2>
-        <p className="login-subtitle">Log in to continue to your account</p>
+        <p className="login-subtitle">ye bhim</p>
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">

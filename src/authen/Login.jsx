@@ -76,7 +76,7 @@ const LoginForm = () => {
       <div className="login-card">
         <div className="login-header">
           <h2>WELCOME BACK!</h2>
-          <p className="login-subtitle">Log in to continue to your account</p>
+          <p className="login-subtitle">Log in to continue to your account ooooooh</p>
         </div>
         
         {errors.submit && (
