@@ -10,24 +10,25 @@ import RegisterDoctor from "./authen/RegisterDoctor.jsx";
 import DoctorDashboard from "./doctordashboard/dashboard.jsx";
 
 import doctorsImg from "./assets/doc.png";
+import heartGif from "./assets/heart.gif";
+
 
 import Dentists from "./specialties/Dentistry";
 import Cardiology from "./specialties/cardio";
 import Ophthalmology from "./specialties/ophtalmo";
 import Dermatology from "./specialties/Dermatology";
-import Pediatrics from "./specialties/Pediatrics";
+import neurology from "./specialties/neurology.jsx";
 
 import Header from "./header";
 
 import heart from "./assets/heart.jpg";
-import brain from "./assets/brain.png";
-import lungs from "./assets/lungs.png";
-import bone from "./assets/bone.png";
-import skin from "./assets/skin.png";
-import baby from "./assets/baby.png";
+import tooth from "./assets/tooth.jpg";
 
-/* ✅ Cardio video */
-import cardioVideo from "./assets/videos/cardio.mp4";
+import brain from "./assets/brain.png";
+import bone from "./assets/bone.png";
+import skin from "./assets/skin.jpg";
+import neuro from "./assets/neuro.jpg";
+
 
 // ======= SPECIALTIES SECTION =======
 function Specialties() {
@@ -41,11 +42,11 @@ function Specialties() {
       </p>
 
       <div className="specialties-container">
-        <SpecialtyCard title="Cardiology" img={heart} route="/cardio" />
-        <SpecialtyCard title="Dentists" img={brain} route="/dentists" />
-        <SpecialtyCard title="Ophthalmology" img={bone} route="/ophthalmology" />
-        <SpecialtyCard title="Dermatology" img={skin} route="/dermatology" />
-        <SpecialtyCard title="Pediatrics" img={baby} route="/pediatrics" />
+        <SpecialtyCard  img={heart} route="/cardio" />
+        <SpecialtyCard  img={tooth} route="/dentists" />
+        <SpecialtyCard  img={bone} route="/ophthalmology" />
+        <SpecialtyCard img={skin} route="/dermatology" />
+        <SpecialtyCard  img={neuro} route="/neurology" />
       </div>
     </section>
   );
@@ -171,7 +172,7 @@ export default function App() {
         <Route path="/dentists" element={<Dentists />} />
         <Route path="/cardio" element={<Cardiology />} />
         <Route path="/dermatology" element={<Dermatology />} />
-        <Route path="/pediatrics" element={<Pediatrics />} />
+        <Route path="/neurology" element={<neurology />} />
         <Route path="/ophthalmology" element={<Ophthalmology />} />
       </Routes>
     </Router>

@@ -1,104 +1,597 @@
 .doctor-dashboard {
   font-family: "Inter", sans-serif;
-  background-color: #f5f7fa;
+  background-color: #f3f6f9;
   min-height: 100vh;
 }
 
+/* ===== LAYOUT: LEFT LARGER, RIGHT SMALLER ===== */
 .dashboard-container {
   display: flex;
-  gap: 30px;
+  gap: 28px;
   padding: 30px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: auto;
+  align-items: flex-start;
 }
 
 .left-panel {
-  flex: 1;
+  flex: 1.25;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 .right-panel {
-  flex: 2;
+  flex: 1.55;
   padding: 20px;
 }
 
+/* ===== CARDS ===== */
 .card {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
 
+/* ===== DOCTOR INFO ===== */
 .doctor-info {
+  display: flex;          /* mettre h4 et p sur la même ligne */
+  align-items: center;    /* centrer verticalement */
+  gap: 6px;               /* petit espace entre h4 et p */
+  height: 100%;           /* s'assurer que le parent a une hauteur définie */
+}
+
+.doctor-info h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: black;
+  line-height: 1;         /* ajuster si besoin */
+}
+
+.doctor-info p {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+/* ===== LAYOUT: LEFT LARGER, RIGHT SMALLER ===== */
+.dashboard-container {
+  display: flex;
+  gap: 28px;
+  padding: 30px;
+  max-width: 1400px;
+  margin: auto;
+  align-items: flex-start;
+}
+
+/* LEFT made larger */
+.left-panel {
+  flex: 1.50;           /* was 1.25 -> increased so doctor card is bigger */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* RIGHT made smaller (patients list less large) */
+.right-panel {
+  flex: 1.10;           /* was 1.55 -> reduced to make patients list smaller */
+  padding: 20px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* ===== DOCTOR INFO ===== */
+.doctor-info {
+  text-align: center;
+  padding: 36px 20px;   /* increased padding so doctor block reads larger */
+}
+
+.doctor-info h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 26px;      /* was 22px -> increased for a larger appearance */
+  font-weight: 700;
+  color: black;
+  line-height: 1.2;
+}
+
+.doctor-info p {
+  margin: 4px 0 0 0;
+  padding: 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.2;
   text-align: center;
 }
 
 .doctor-buttons {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .add-btn, .patients-btn {
-  padding: 8px 12px;
+  padding: 11px 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.add-btn { background-color: #4caf50; color: white; }
-.patients-btn { background-color: #2196f3; color: white; }
+.add-btn { background-color: #ffffff; color: white; }
+.patients-btn { background-color: #2563eb; color: white; }
+
+/* ===================== */
+/* ===== CALENDAR (SMALLER) ===== */
+/* ===================== */
+
+.calendar.card {
+  padding: 14px;              /* smaller padding */
+}
 
 .calendar .month-label {
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 8px;
   text-align: center;
+  color: #0f4c5c;
+  font-size: 16px;            /* smaller title */
 }
 
-.weekdays, .days {
+/* weekday header */
+.weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  margin-bottom: 8px;
+  font-size: 11px;            /* smaller text */
+  color: #6b7280;
+  margin-bottom: 6px;
 }
 
+/* days grid tighter */
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;                   /* reduced gap */
+}
+
+/* day cells smaller */
 .days .day {
-  padding: 8px 0;
-  border-radius: 50%;
+  padding: 6px 0;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 13px;
+  min-height: 30px;           /* reduced height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* hover & selected */
+.days .day:hover {
+  background-color: #ecfeff;
+  box-shadow: inset 0 0 0 1px rgba(15,76,92,0.06);
 }
 
 .days .selected {
-  background-color: #f7a530;
+  background-color: #0f766e;
   color: white;
-  font-weight: bold;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(15,118,110,0.12);
 }
 
+/* weekend color */
+.days .weekend {
+  color: #ef4444;
+}
+
+/* ===== APPOINTMENTS ===== */
 .appointments-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 15px;
+  gap: 14px;
+  margin-top: 18px;
 }
 
 .appointment {
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  background: #f9f9f9;
-  border-left: 5px solid #ccc;
+  align-items: center;
+  background: #f8fafc;
+  border-left: 6px solid #ccc;
+  gap: 12px;
 }
 
-.appointment.confirmed { border-left-color: #4caf50; }
-.appointment.pending { border-left-color: #ff9800; }
-.appointment.cancelled { border-left-color: #f44336; }
+.appointment.confirmed { border-left-color: #16a34a; }
+.appointment.pending { border-left-color: #f59e0b; }
+.appointment.cancelled { border-left-color: #dc2626; }
 
-.time { font-weight: 600; }
-.reason { flex: 1; margin-left: 20px; }
-.status { font-weight: 600; text-transform: uppercase; }
+/* reduced min-width so patient list doesn't force wide columns */
+.time {
+  font-weight: 700;
+  min-width: 170px;   /* was 210px -> reduced to make list more compact */
+  color: #0f4c5c;
+}
+
+.reason {
+  flex: 1;
+  color: #374151;
+  padding: 0 12px;
+}
+
+.status {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1000px) {
+  .dashboard-container {
+    flex-direction: column;
+    padding: 18px;
+  }
+  .left-panel,
+  .right-panel {
+    flex: unset;
+    min-width: unset;
+  }
+}
+
+
+.doctor-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.add-btn, .patients-btn {
+  padding: 11px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.add-btn { background-color: #ffffff; color: white; }
+.patients-btn { background-color: #2563eb; color: white; }
+
+/* ===================== */
+/* ===== CALENDAR (SMALLER) ===== */
+/* ===================== */
+
+.calendar.card {
+  padding: 14px;              /* smaller padding */
+}
+
+.calendar .month-label {
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #0f4c5c;
+  font-size: 16px;            /* smaller title */
+}
+
+/* weekday header */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 11px;            /* smaller text */
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+/* days grid tighter */
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;                   /* reduced gap */
+}
+
+/* day cells smaller */
+.days .day {
+  padding: 6px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  min-height: 30px;           /* reduced height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* hover & selected */
+.days .day:hover {
+  background-color: #ecfeff;
+  box-shadow: inset 0 0 0 1px rgba(15,76,92,0.06);
+}
+
+.days .selected {
+  background-color: #0f766e;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(15,118,110,0.12);
+}
+
+/* weekend color */
+.days .weekend {
+  color: #ef4444;
+}
+
+/* ===== APPOINTMENTS ===== */
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.appointment {
+  padding: 14px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border-left: 6px solid #ccc;
+  gap: 12px;
+}
+
+.appointment.confirmed { border-left-color: #16a34a; }
+.appointment.pending { border-left-color: #f59e0b; }
+.appointment.cancelled { border-left-color: #dc2626; }
+
+.time {
+  font-weight: 700;
+  min-width: 210px;
+  color: #0f4c5c;
+}
+
+.reason {
+  flex: 1;
+  color: #374151;
+  padding: 0 12px;
+}
+
+.status {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1000px) {
+  .dashboard-container {
+    flex-direction: column;
+    padding: 18px;
+  }
+  .left-panel,
+  .right-panel {
+    flex: unset;
+    min-width: unset;
+  }
+}
+.doctor-dashboard {
+  font-family: "Inter", sans-serif;
+  background-color: #f3f6f9;
+  min-height: 100vh;
+}
+
+/* ===== LAYOUT ===== */
+.dashboard-container {
+  display: flex;
+  gap: 28px;
+  padding: 30px;
+  max-width: 1400px;
+  margin: auto;
+  align-items: flex-start;
+}
+
+.left-panel {
+  flex: 1.25;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.right-panel {
+  flex: 1.55;
+  padding: 20px;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* ===== DOCTOR INFO ===== */
+.doctor-info {
+  text-align: center;
+  padding: 22px 18px;
+}
+
+.doctor-info h2 {
+  margin-bottom: 4px;
+  color: #0f4c5c;
+  font-size: 22px;
+}
+
+.doctor-info p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ===== REAL BUTTONS ===== */
+.doctor-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.add-btn,
+.patients-btn {
+  padding: 9px 14px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+/* primary */
+.add-btn {
+  background-color: #D88B73;
+  color: white;
+}
+
+/* secondary */
+.patients-btn {
+  background-color: #FCC9AE;
+  color: #ffffff;
+  border: 1px solid #fdc5b5;
+}
+
+/* hover effects */
+.add-btn:hover {
+  background-color: #fdc5b5;
+}
+
+.patients-btn:hover {
+  background-color:#FCC9AE ;
+}
+
+/* ===================== */
+/* ===== CALENDAR (MUCH SMALLER) ===== */
+/* ===================== */
+
+.calendar.card {
+  padding: 10px;              /* smaller container */
+}
+
+.calendar .month-label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-align: center;
+  color: #B0624F;
+  font-size: 14px;            /* smaller title */
+}
+
+/* weekdays */
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 10px;
+  color: black;
+  margin-bottom: 4px;
+}
+
+/* compact grid */
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+/* compact day cells */
+.days .day {
+  min-height: 26px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hover & selected */
+.days .day:hover {
+  background-color: #f0fdfa;
+}
+
+.days .selected {
+  background-color: #ef6351;
+  color: white;
+  font-weight: 600;
+}
+
+/* weekend */
+.days .weekend {
+  color: #dc2626;
+}
+
+/* ===== APPOINTMENTS ===== */
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.appointment {
+  padding: 14px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border-left: 6px solid #ccc;
+  gap: 12px;
+}
+
+.appointment.confirmed { border-left-color: #16a34a; }
+.appointment.pending { border-left-color: #f59e0b; }
+.appointment.cancelled { border-left-color: #dc2626; }
+
+.time {
+  font-weight: 700;
+  min-width: 210px;
+  color: #4f494b;
+}
+
+.reason {
+  flex: 1;
+  color: #374151;
+  padding: 0 12px;
+}
+
+.status {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1000px) {
+  .dashboard-container {
+    flex-direction: column;
+    padding: 18px;
+  }
+  .left-panel,
+  .right-panel {
+    flex: unset;
+    min-width: unset;
+  }
+}

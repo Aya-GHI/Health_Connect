@@ -198,13 +198,15 @@ html, body, #root {
 }
 
 /* ================= SPECIALTIES STYLING ================= */
+
 .specialties-section {
-    padding: 80px 5%;
+    padding: 90px 6%;
     text-align: center;
     max-width: 1400px;
     margin: 0 auto;
-    background: #ffffff;
+    background: transparent;
 }
+
 
 .specialties-title {
     font-size: 2.5rem;
@@ -219,50 +221,15 @@ html, body, #root {
     font-size: 1.1rem;
 }
 
+
 .specialties-container {
     display: flex;
-    gap: 30px;
-    align-items: stretch;
-}
-
-/* Featured Card (Left Side) */
-.specialty-featured {
-    flex: 1;
-    background: linear-gradient(135deg, #eafbf3 0%, #d4f4e7 100%);
-    border-radius: 25px;
-    padding: 50px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 50px;
 }
 
-.specialty-featured:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.specialty-featured img {
-    width: 70px;
-    margin-bottom: 25px;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-}
-
-.specialty-featured h3 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: #2d3436;
-    font-weight: 700;
-}
-
-.specialty-featured span {
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 1.1rem;
-}
 
 /* Grid (Right Side) */
 .specialties-grid {
@@ -273,25 +240,29 @@ html, body, #root {
 }
 
 .specialty-card {
-    background: #ffffff;
-    border: 2px solid #f1f3f5;
-    border-radius: 20px;
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 220px;
+    height: 160px;
+    border-radius: 22px;
+    position: relative;
+    overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ffe9d3;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
+/* 🔥 ENTIRE CARD FLOATS */
 .specialty-card:hover {
-    background: #fff;
-    border-color: #ff9f43;
-    box-shadow: 0 10px 30px rgba(255, 159, 67, 0.15);
-    transform: translateY(-5px);
+    transform: translateY(-12px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
+
+
 
 .specialty-card img {
     width: 50px;
@@ -486,7 +457,6 @@ html, body, #root {
     align-items: center;
     justify-content: center;
 
-    background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.0));
     padding-bottom: 8px;
 }
 
@@ -506,4 +476,32 @@ html, body, #root {
 
 h1, h2, h3 {
   font-family: "Yeseva One", serif;
+}
+
+.specialty-overlay {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+}
+
+.specialty-overlay h4 {
+    margin: 0;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+@media (max-width: 768px) {
+    .specialty-card {
+        width: 180px;
+        height: 140px;
+    }
+}
+.specialty-card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
