@@ -82,7 +82,7 @@ const RegisterDoctor = () => {
         <button className="register-btn">REGISTER</button>
         <p className="login-link">
   Already have an account?{" "}
-  <Link to="/doctor-login">Log in</Link>
+  <Link to="/login-doctor">Log in</Link>
 </p>
 
       </div>

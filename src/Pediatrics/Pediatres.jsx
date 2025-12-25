@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../authen/styles/Cardiologues.css";
+import "../authen/styles/Pediatres.css";
 
-import cardio1 from "../assets/cardio1.jpg";
-import cardio2 from "../assets/cardio2.jpg";
-import cardio3 from "../assets/cardio3.jpg";
+import pedia1 from "../assets/pedia1.jpg";
+import pedia2 from "../assets/pedia2.jpg";
+import pedia3 from "../assets/pedia3.jpg";
 
 /* Months */
 const months = [
@@ -23,34 +23,34 @@ const timeSlots = {
 };
 
 /* Cardiologues Data */
-const cardiologues = [
+const pediatres = [
   {
     id: 1,
-    name: "Dr. Syrine Ben Jeddou",
-    role: "Cardiologue",
-    address: "Centre medical Aicha, L'Aouina, Tunis",
-    img: cardio1,
-    nextAppointment: "Monday 6 July 2026",
+    name: "Dr Rihab BEN OTHMAN ",
+    role: "Pédiatre",
+    address: "Complexe mayar mourouj 3 El Mourouj 3 2074 Ben arous Tunisie",
+    img: pedia1,
+    nextAppointment: "Lundi 6 Mars 2026",
   },
   {
     id: 2,
-    name: "Dr Fourat ZOUARI",
-    role: "Cardiologue",
-    address: "Centre médical Violette, Ennasr 2, Ariana",
-    img: cardio2,
-    nextAppointment: "Friday 15 April 2026",
+    name: "Dr Elyes LASSOUED",
+    role: "Pédiatre",
+    address: "Centre Médical La Rose, à côté de Clinique La Rose, Les Berges du Lac 2- Tunis Résidence n°25, Appartement A2-2 Les Berges Du Lac 2 1053 Tunis Tunisie",
+    img: pedia2,
+    nextAppointment: "jeudi 15 septembre 2026",
   },
   {
     id: 3,
-    name: "Dr Tarek BEN CHEDLI",
-    role: "Cardiologue",
-    address: "Soukra Médical, La Soukra, Ariana",
-    img: cardio3,
-    nextAppointment: "Thursday 5 May 2026",
+    name: "Dr Mohamed chawki GHARBI",
+    role: "Pédiatre",
+    address: "Mourouj 4 Centre Médical AL AHMADI - En face Terminus Ligne Métro 6 (1er étage) El Mourouj 4 2074 Ben arous Tunisie",
+    img: pedia3,
+    nextAppointment: "vendredi 5 decembre 2026",
   },
 ];
 
-function Cardiologues() {
+function Pediatres() {
   const [currentMonth, setCurrentMonth] = useState(0);
   const [showTimes, setShowTimes] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -65,7 +65,7 @@ function Cardiologues() {
   navigate("/booking/reason", {
     state: {
         doctor: selectedDoc,
-        specialty: "cardiology",
+        specialty: "pediatrics",
         time: time,
         day: day,
         month: months[currentMonth],
@@ -82,9 +82,9 @@ function Cardiologues() {
 
   return (
     <div className="page">
-      <h1 className="title">Cardiologues</h1>
+      <h1 className="title">Pediatres</h1>
 
-      {cardiologues.map((doc) => (
+      {pediatres.map((doc) => (
         <div className="card" key={doc.id}>
           {/* LEFT */}
           <div className="left">
@@ -155,4 +155,4 @@ function Cardiologues() {
   );
 }
 
-export default Cardiologues;
+export default Pediatres;

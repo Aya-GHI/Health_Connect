@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../authen/styles/Cardiologues.css";
+import "../authen/styles/Ophtalmologues.css";
 
-import cardio1 from "../assets/cardio1.jpg";
-import cardio2 from "../assets/cardio2.jpg";
-import cardio3 from "../assets/cardio3.jpg";
+import ophtalmo1 from "../assets/ophtalmo1.jpg";
+import ophtalmo2 from "../assets/ophtalmo2.jpg";
+import ophtalmo3 from "../assets/ophtalmo3.jpg";
 
 /* Months */
 const months = [
@@ -23,34 +23,34 @@ const timeSlots = {
 };
 
 /* Cardiologues Data */
-const cardiologues = [
+const ophtalmologues = [
   {
     id: 1,
-    name: "Dr. Syrine Ben Jeddou",
-    role: "Cardiologue",
-    address: "Centre medical Aicha, L'Aouina, Tunis",
-    img: cardio1,
-    nextAppointment: "Monday 6 July 2026",
+    name: "Pr Imen AMMOUS",
+    role: "Ophtalmologue",
+    address: "Clinique Ettaoufik, 1er étage, Tunis,El Manar 2092 Tunis Tunisie",
+    img: ophtalmo1,
+    nextAppointment: "Tuesday 9 june 2026",
   },
   {
     id: 2,
-    name: "Dr Fourat ZOUARI",
-    role: "Cardiologue",
-    address: "Centre médical Violette, Ennasr 2, Ariana",
-    img: cardio2,
-    nextAppointment: "Friday 15 April 2026",
+    name: "Dr Sofiene FEKI ",
+    role: "Ophtalmologue",
+    address: "Érable médical près de la clinique Hannibal 3ème étage cabinet 335 Les Berges Du Lac 2 1053 Tunis Tunisie",
+    img: ophtalmo2,
+    nextAppointment: "Wednesday 18 June 2026",
   },
   {
     id: 3,
-    name: "Dr Tarek BEN CHEDLI",
-    role: "Cardiologue",
-    address: "Soukra Médical, La Soukra, Ariana",
-    img: cardio3,
-    nextAppointment: "Thursday 5 May 2026",
+    name: "Dr Hatem EL AMRI ",
+    role: "Ophtalmologue",
+    address: "21 Avenue de l'environnement, Sidi Hassine, Tunis, App. n°7, 1 er étage.Sidi Hassine 1095 Tunis Tunisie",
+    img: ophtalmo3,
+    nextAppointment: "Monday  5 May 2026",
   },
 ];
 
-function Cardiologues() {
+function Ophtalmologues() {
   const [currentMonth, setCurrentMonth] = useState(0);
   const [showTimes, setShowTimes] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -65,7 +65,7 @@ function Cardiologues() {
   navigate("/booking/reason", {
     state: {
         doctor: selectedDoc,
-        specialty: "cardiology",
+        specialty: "ophtalmology",
         time: time,
         day: day,
         month: months[currentMonth],
@@ -82,9 +82,9 @@ function Cardiologues() {
 
   return (
     <div className="page">
-      <h1 className="title">Cardiologues</h1>
+      <h1 className="title">Ophtalmologues</h1>
 
-      {cardiologues.map((doc) => (
+      {ophtalmologues.map((doc) => (
         <div className="card" key={doc.id}>
           {/* LEFT */}
           <div className="left">
@@ -155,4 +155,4 @@ function Cardiologues() {
   );
 }
 
-export default Cardiologues;
+export default Ophtalmologues;

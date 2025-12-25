@@ -13,6 +13,33 @@ const reasonsBySpecialty = {
     "Consultation de cardiologie",
     "Consultation pré-opératoire de cardiologie",
   ],
+  ophtalmology: [
+    "Consultation",
+    "Lentilles de contact",
+    "Cataracte:Consultation",
+    "Chirurgie réfractive:Consultation",
+    "Examen pré-opératoire",
+    "Examen post-opératoire",
+  ],
+  dermatology: [
+    "Consultation de dermatologie générale",
+    "Suivi et contrôle des grains de beauté",
+    "Consultation pour acné",
+    "Consultation pour chute de cheveux (Alopécie)",
+    "Traitement de l'eczéma ou du psoriasis",
+    "Avis pour une lésion cutanée suspecte",
+    "Consultation pour mycose ou problèmes d'ongles",
+    "Traitement de verrues",
+    "Consultation de dermatologie esthétique",,
+  ],
+  pediatrics: [
+    "Consultation de suivi pédiatrique (bilan de santé)",
+    "Vaccination et rappels",
+    "Consultation pour maladie aiguë (fièvre, toux, otite)",
+    "Suivi de la croissance et du développement",
+    "Consultation pour troubles du sommeil",
+    "Visite obligatoire (8ème jour, 9ème mois, 24ème mois)",
+  ],
 };
 
 const Step2Reason = () => {

@@ -20,9 +20,9 @@ import BookingSuccess from "./Dentistry/BookingSuccess.jsx";
 
 
 import Cardiologues from "./Cardiology/Cardiologues.jsx";
-import Ophthalmology from "./specialties/ophtalmo";
-import Dermatology from "./specialties/Dermatology";
-import Pediatrics from "./specialties/Pediatrics";
+import Ophtalmologues from "./Ophtalmology/Ophtalmologues.jsx";
+import Dermatologues from "./Dermatology/Dermatologues.jsx";
+import Pediatres from "./Pediatrics/Pediatres.jsx";
 
 import Header from "./header";
 
@@ -50,9 +50,9 @@ function Specialties() {
       <div className="specialties-container">
         <SpecialtyCard title="Cardiology" img={heart} route="/cardiologues" />
         <SpecialtyCard title="Dentists" img={brain} route="/dentists" />
-        <SpecialtyCard title="Ophthalmology" img={bone} route="/ophthalmology" />
-        <SpecialtyCard title="Dermatology" img={skin} route="/dermatology" />
-        <SpecialtyCard title="Pediatrics" img={baby} route="/pediatrics" />
+        <SpecialtyCard title="Ophtalmology" img={bone} route="/ophtalmologues" />
+        <SpecialtyCard title="Dermatology" img={skin} route="/dermatologues" />
+        <SpecialtyCard title="Pediatrics" img={baby} route="/pediatres" />
       </div>
     </section>
   );
@@ -185,9 +185,10 @@ export default function App() {
 
 
         <Route path="/cardiologues" element={<Cardiologues />} />
-        <Route path="/dermatology" element={<Dermatology />} />
-        <Route path="/pediatrics" element={<Pediatrics />} />
-        <Route path="/ophthalmology" element={<Ophthalmology />} />
+        <Route path="/ophtalmologues" element={<Ophtalmologues />} />
+        <Route path="/dermatologues" element={<Dermatologues />} />
+        <Route path="/pediatres" element={<Pediatres />} />
+        
       </Routes>
     </Router>
   );

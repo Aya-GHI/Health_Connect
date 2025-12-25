@@ -14,7 +14,7 @@ const Step4Auth = () => {
           <h2 className="main-title">Votre rendez-vous n'est pas encore confirmé.</h2>
           
           <div className="auth-card">
-            <p>Nouveau sur Doctolib ?</p>
+            <p>Nouveau sur Health Connect ?</p>
             {/* الربط بصفحة التسجيل */}
             <button className="btn-blue" onClick={() => navigate("/register")}>
               S'INSCRIRE
@@ -22,7 +22,7 @@ const Step4Auth = () => {
           </div>
 
           <div className="auth-card">
-            <p>J'ai déjà un compte Doctolib</p>
+            <p>J'ai déjà un compte Health Connect </p>
             {/* الربط بصفحة الدخول */}
             <button
   className="btn-yellow"

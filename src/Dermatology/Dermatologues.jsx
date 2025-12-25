@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../authen/styles/Cardiologues.css";
+import "../authen/styles/Dermatologues.css";
 
-import cardio1 from "../assets/cardio1.jpg";
-import cardio2 from "../assets/cardio2.jpg";
-import cardio3 from "../assets/cardio3.jpg";
+import dermato1 from "../assets/dermato1.jpg";
+import dermato2 from "../assets/dermato2.jpg";
+import dermato3 from "../assets/dermato3.jpg";
 
 /* Months */
 const months = [
@@ -23,34 +23,34 @@ const timeSlots = {
 };
 
 /* Cardiologues Data */
-const cardiologues = [
+const dermatologues = [
   {
     id: 1,
-    name: "Dr. Syrine Ben Jeddou",
-    role: "Cardiologue",
-    address: "Centre medical Aicha, L'Aouina, Tunis",
-    img: cardio1,
-    nextAppointment: "Monday 6 July 2026",
+    name: "Dr Jihen HICHERI",
+    role: "Dermatologue",
+    address: " Iris Medical Center avenue Hedi Nouira Nasr1 (a coté de la Clinique Amilcar), 1 er étage cabinet 1.4 Cité Ennasr 1 2037 Ariana Tunisie",
+    img: dermato1,
+    nextAppointment: "mardi 9 février  2026",
   },
   {
     id: 2,
-    name: "Dr Fourat ZOUARI",
-    role: "Cardiologue",
-    address: "Centre médical Violette, Ennasr 2, Ariana",
-    img: cardio2,
-    nextAppointment: "Friday 15 April 2026",
+    name: "Dr Sami BAKER ",
+    role: "Dermatologue",
+    address: "Avicenne Medical (à coté de la clinique Avicenne), 2 rue mohammed Jammali , 3ème étage cabinet 12 El Manar 2 2092 Tunis Tunisie",
+    img: dermato2,
+    nextAppointment: "Lundi  18 janvier 2026",
   },
   {
     id: 3,
-    name: "Dr Tarek BEN CHEDLI",
-    role: "Cardiologue",
-    address: "Soukra Médical, La Soukra, Ariana",
-    img: cardio3,
-    nextAppointment: "Thursday 5 May 2026",
+    name: "Dr Yosra JMOUR ",
+    role: "Dermatologue",
+    address: "Centre Médical Lake Tower (près de la clinique Hanibal) 1er étage Cabinet C-8 Avenue Beji Caïd Essebsi , Lac 2 Les Berges Du Lac 2 1053 Tunis Tunisie",
+    img: dermato3,
+    nextAppointment: "Mercredi  18 May 2026",
   },
 ];
 
-function Cardiologues() {
+function Dermatologues() {
   const [currentMonth, setCurrentMonth] = useState(0);
   const [showTimes, setShowTimes] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -65,7 +65,7 @@ function Cardiologues() {
   navigate("/booking/reason", {
     state: {
         doctor: selectedDoc,
-        specialty: "cardiology",
+        specialty: "dermatology",
         time: time,
         day: day,
         month: months[currentMonth],
@@ -82,9 +82,9 @@ function Cardiologues() {
 
   return (
     <div className="page">
-      <h1 className="title">Cardiologues</h1>
+      <h1 className="title">Dermatologues</h1>
 
-      {cardiologues.map((doc) => (
+      {dermatologues.map((doc) => (
         <div className="card" key={doc.id}>
           {/* LEFT */}
           <div className="left">
@@ -155,4 +155,4 @@ function Cardiologues() {
   );
 }
 
-export default Cardiologues;
+export default Dermatologues;
