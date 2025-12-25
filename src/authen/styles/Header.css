@@ -5,29 +5,32 @@
   position: sticky;
   top: 0;
   z-index: 100;
+
+  height: 90px;        /* ثابت */
+  padding: 0;          /* ما نكبروش الفراغ */
   display: flex;
-  align-items: center;
-  height: 90px; /* height normal */
+  align-items: center; /* height normal */
 }
 
 /* CONTENT CENTERED */
 .header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 60px;
-}
+  padding: 0 60px;     /* ثابت */
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 /* LOGO + TEXT */
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  text-decoration: none;
+  gap: 12px;
+  height: 100%;        /* مهم */
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logo-text {
@@ -36,21 +39,24 @@
 
 
 .logo-image {
-  height: 150px;  /* 🔥 PERFECT SIZE */
+  height: auto;
+  max-height: 80px;    /* 👈 هذا السر */
   width: auto;
+  display: block;
 }
-
 .logo-text {
+  font-size: 2.2rem; /* كبرنا العنوان */
+  font-weight: 700;
   color: #ffffff;
-  font-size: 1.8rem;
-  font-weight: bold;
+  letter-spacing: 0.5px;
+  line-height: 1;
 }
 
 /* LINKS ON RIGHT SIDE */
 .header-links {
   display: flex;
   align-items: center;
-  gap: 35px; /* 🔥 spacing between links */
+  gap: 30px; /* 🔥 spacing between links */
 }
 
 /* NORMAL LINKS */
@@ -68,9 +74,29 @@
 }
 
 /* BUTTONS (LOGIN / CREATE ACCOUNT / DOCTOR BUTTON) */
-.login-btn, 
-.create-account-btn,
-.doctor-btn {
+.login-btn {
+  background-color: #ff9e20;
+  color: white;
+  border: none;
+
+  height: 34px;        /* 👈 أصغر */
+  padding: 0 14px;     /* 👈 أقصر */
+  border-radius: 20px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+.create-account-btn {
   background-color: #ff9e20;
   color: white;
   border: none;
@@ -83,6 +109,37 @@
   transition: 0.3s;
   white-space: nowrap;
 }
+.doctor-btn {
+  background-color: #ffa43a;
+  color: white;
+  border: none;
+
+  height: 40px;          /* 👈 نثبّت الارتفاع */
+  padding: 0 22px;       /* 👈 نتحكمو في الطول */
+  border-radius: 30px;
+
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+
+  white-space: nowrap;   /* 👈 ما يهبّطش سطر */
+  flex-shrink: 0;        /* 👈 ما يتضغطش */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+
+
+
+/* النص */
+
+
+
+
 
 .login-btn:hover,
 .create-account-btn:hover,
@@ -100,9 +157,12 @@
   }
 
   .header-links {
-    gap: 20px;
+    
     flex-wrap: wrap;
     justify-content: center;
+     display: flex;
+  align-items: center; /* 🔥 align عمودي */
+  gap: 30px;
   }
 
   .logo-text {

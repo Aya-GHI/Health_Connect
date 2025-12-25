@@ -11,8 +11,15 @@ import DoctorDashboard from "./doctordashboard/dashboard.jsx";
 
 import doctorsImg from "./assets/doc.png";
 
-import Dentists from "./specialties/Dentistry";
-import Cardiology from "./specialties/cardio";
+import Dentists from "./Dentistry/DentistsPage.jsx";
+import Step2Reason from "./Dentistry/Step2Reason";
+import Step3Confirm from "./Dentistry/Step3Confirm";
+import Step4Auth from "./Dentistry/Step4Auth";
+import BookingSuccess from "./Dentistry/BookingSuccess.jsx";
+
+
+
+import Cardiologues from "./Cardiology/Cardiologues.jsx";
 import Ophthalmology from "./specialties/ophtalmo";
 import Dermatology from "./specialties/Dermatology";
 import Pediatrics from "./specialties/Pediatrics";
@@ -41,7 +48,7 @@ function Specialties() {
       </p>
 
       <div className="specialties-container">
-        <SpecialtyCard title="Cardiology" img={heart} route="/cardio" />
+        <SpecialtyCard title="Cardiology" img={heart} route="/cardiologues" />
         <SpecialtyCard title="Dentists" img={brain} route="/dentists" />
         <SpecialtyCard title="Ophthalmology" img={bone} route="/ophthalmology" />
         <SpecialtyCard title="Dermatology" img={skin} route="/dermatology" />
@@ -131,7 +138,7 @@ function SearchBar() {
 function AppContent() {
   return (
     <div className="app">
-      <Header />
+      
 
       <section className="hero">
         <div className="hero-content">
@@ -162,14 +169,22 @@ function AppContent() {
 export default function App() {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<AppContent />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/register-doctor" element={<RegisterDoctor />} />
         <Route path="/login-doctor" element={<LoginDoctor />} />
         <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
         <Route path="/dentists" element={<Dentists />} />
-        <Route path="/cardio" element={<Cardiology />} />
+        <Route path="/booking/reason" element={<Step2Reason />} />
+        <Route path="/booking/confirm" element={<Step3Confirm />} />
+        <Route path="/booking/auth" element={<Step4Auth />} />
+        <Route path="/bookingsuccess" element={<BookingSuccess />} />
+
+
+        <Route path="/cardiologues" element={<Cardiologues />} />
         <Route path="/dermatology" element={<Dermatology />} />
         <Route path="/pediatrics" element={<Pediatrics />} />
         <Route path="/ophthalmology" element={<Ophthalmology />} />

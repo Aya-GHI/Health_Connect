@@ -1,6 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import logo from "./assets/logo.png";
+import "./authen/styles/Header.css";
+
 
 export default function Header() {
   const navigate = useNavigate();
@@ -19,16 +21,19 @@ export default function Header() {
       </div>
 
       <div className="header-menu">
-       <button onClick={() => navigate("/login-doctor")}>
-          ARE YOU A DOCTOR?
-        </button>
+       <button
+            className="doctor-btn"
+            onClick={() => navigate("/register-doctor")}
+          >
+             ARE YOU A DOCTOR?
+          </button>
 
         {/* Help center link can stay */}
         <a href="#">HELP CENTER</a>
 
         {/* Login button */}
         <button className="login-btn" onClick={() => navigate("/login")}>
-          Login
+          LOGIN
         </button>
       </div>
     </header>

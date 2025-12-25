@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // زدنا useNavigate هنا
-import "../styles/Step4Auth.css";
+import "../authen/styles/Step4Auth.css";
 
 const Step4Auth = () => {
   const location = useLocation();
@@ -24,9 +24,22 @@ const Step4Auth = () => {
           <div className="auth-card">
             <p>J'ai déjà un compte Doctolib</p>
             {/* الربط بصفحة الدخول */}
-            <button className="btn-yellow" onClick={() => navigate("/login")}>
-              SE CONNECTER
-            </button>
+            <button
+  className="btn-yellow"
+  onClick={() => {
+    navigate("/login", {
+      state: {
+        doctor,
+        reason,
+        day,
+        time,
+      },
+    });
+  }}
+>
+  SE CONNECTER
+</button>
+
           </div>
         </div>
 

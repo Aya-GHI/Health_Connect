@@ -1,21 +1,36 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/Step2Reason.css"; // ربطنا الـ CSS الخاص بالصفحة هذي
+import "../authen/styles/Step2Reason.css";
 
-const Step2Reason = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { doctor, day, time } = location.state || {};
-
-  const reasons = [
+const reasonsBySpecialty = {
+  dentistry: [
     "Consultation dentaire",
     "Urgence dentaire",
     "Consultation d'occlusodontie",
-    "Consultation M'T Dents"
-  ];
+    "Consultation M'T Dents",
+  ],
+  cardiology: [
+    "Consultation de cardiologie",
+    "Consultation pré-opératoire de cardiologie",
+  ],
+};
 
-  const handleSelect = (reason) => {
-    navigate("/booking/confirm", { state: { ...location.state, reason } });
+const Step2Reason = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { specialty, doctor, day, time } = location.state || {};
+  const reasons = reasonsBySpecialty[specialty] || [];
+
+  const handleSelectReason = (reason) => {
+    navigate("/booking/confirm", {
+      state: {
+        specialty,
+        doctor,
+        day,
+        time,
+        reason,
+      },
+    });
   };
 
   return (
@@ -26,11 +41,12 @@ const Step2Reason = () => {
           <h2 className="step-title">Choisissez votre motif de consultation</h2>
           <div className="options-list">
             {reasons.map((r) => (
-              <div key={r} className="option-row" onClick={() => handleSelect(r)}>
-                <span>{r}</span>
-                <span className="blue-arrow">›</span>
-              </div>
-            ))}
+  // قمت بتغيير handleSelect إلى handleSelectReason هنا
+  <div key={r} className="option-row" onClick={() => handleSelectReason(r)}> 
+    <span>{r}</span>
+    <span className="blue-arrow">›</span>
+  </div>
+))}
           </div>
         </div>
       </div>
