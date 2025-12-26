@@ -1,125 +1,70 @@
-/* Container الكبيرة اللي تضمن الوسطية */
-.booking-container {
-    background-color: #f0f5f9; /* لون خلفية دوكتوليب */
-    min-height: 100vh;
+/* صف الكروت */
+.auth-cards-wrapper {
     display: flex;
-    justify-content: center; /* تجيب المحتوى في الوسط */
-    padding: 40px 20px;
-}
-
-/* الـ Wrapper اللي يلم الـ Main والـ Sidebar بجنب بعضهم */
-.booking-wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
+    gap: 14px;
+    justify-content: center;
     width: 100%;
-    max-width: 1050px; /* يحدد عرض الصفحة ويمنع تمططها */
+    align-items: stretch;
 }
 
-/* الجزء الأيسر (الرئيسي) */
-.booking-main {
-    flex: 2; /* ياخذ مساحة أكبر */
-}
-
-/* الجزء الأيمن (الـ Sidebar) */
-.booking-sidebar {
-    flex: 1; /* ياخذ مساحة أصغر */
-}
-
-/* تحسين الـ Cards اللي عندك */
+/* كل كارت أصغر شويّة */
 .auth-card {
-    background: white;
-    margin-bottom: 16px;
-    padding: 30px;
+    background: white;       
+    padding: 24px;           /* أصغر من قبل */
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    border: 1px solid #eef2f6; /* تحديد خفيف */
+    border: 1px solid #eef2f6; 
+    flex: 0 0 38%;           /* أصغر شويّة */
+    min-width: 250px;      
+    max-width: 350px;        
+    margin-bottom: 0;
 }
 
+/* نصوص الكارت */
 .auth-card p {
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #000000;
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #000000;          
 }
 
-/* زر التسجيل الأزرق */
+/* أزرار الكارت */
 .btn-blue {
-    background-color: #ff8a2a; /* */
+    background-color: #ff8a2a; 
     color: white;
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     border: none;
-    border-radius: 8px; /* */
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     transition: background 0.3s;
 }
 
 .btn-blue:hover {
-    background-color: #FFD8B0;
+    background-color: #FFD8B0; 
 }
 
-/* زر الدخول الأصفر */
 .btn-yellow {
-    background-color: #FFD8B0; /* */
+    background-color: #FFD8B0; 
     color: #ffffff;
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     border: none;
-    border-radius: 8px; /* */
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
     transition: background 0.3s;
 }
 
 .btn-yellow:hover {
-    background-color: #ff8a2a;
+    background-color: #ff8a2a; 
+}
+.booking-container {
+    background-color: #ffe5cc !important; /* force اللون */
+    min-height: 100vh;
 }
 
-/* العنوان الرئيسي */
-.main-title {
-    color: #052c48;
-    font-size: 20px;
-    margin-bottom: 25px;
-    text-align: left; /* يبقى على يسار الـ Main Card */
-}
-/* Sidebar Card Design */
-.sidebar-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.sidebar-header-blue {
-    background-color: #384d67; /* اللون الأزرق الغامق متاع التاريخ */
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.doc-mini-profile {
-    display: flex;
-    padding: 15px;
-    gap: 12px;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-}
-
-.mini-avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.rdv-details-list {
-    padding: 15px;
-    font-size: 14px;
-    color: #4a5568;
-    line-height: 1.6;
-}

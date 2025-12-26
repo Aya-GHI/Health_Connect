@@ -10,24 +10,26 @@ import RegisterDoctor from "./authen/RegisterDoctor.jsx";
 import DoctorDashboard from "./doctordashboard/dashboard.jsx";
 
 import doctorsImg from "./assets/doc.png";
-import heartGif from "./assets/heart.gif";
+
+import Dentists from "./Dentistry/DentistsPage.jsx";
+import Step2Reason from "./Dentistry/Step2Reason";
+import Step4Auth from "./Dentistry/Step4Auth.jsx";
+import BookingSuccess from "./Dentistry/BookingSuccess.jsx";
 
 
-import Dentists from "./specialties/Dentistry";
-import Cardiology from "./specialties/cardio";
-import Ophthalmology from "./specialties/ophtalmo";
-import Dermatology from "./specialties/Dermatology";
-import neurology from "./specialties/neurology.jsx";
+//import hanine 
+import Cardiologues from "./Cardiology/Cardiologues.jsx";
+import Ophtalmologues from "./Ophtalmology/Ophtalmologues.jsx";
+import Dermatologues from "./Dermatology/Dermatologues.jsx";
+import Pediatres from "./Pediatrics/Pediatres.jsx";
+
 
 import Header from "./header";
 
-import heart from "./assets/heart.jpg";
-import tooth from "./assets/tooth.jpg";
-
-import brain from "./assets/brain.png";
-import bone from "./assets/bone.png";
-import skin from "./assets/skin.jpg";
-import neuro from "./assets/neuro.jpg";
+import heart from "./assets/doc.png";
+import tooth from "./assets/doc.png";
+import bone from "./assets/doc.png";
+import skin from "./assets/doc.png";
 
 
 // ======= SPECIALTIES SECTION =======
@@ -42,11 +44,11 @@ function Specialties() {
       </p>
 
       <div className="specialties-container">
-        <SpecialtyCard  img={heart} route="/cardio" />
-        <SpecialtyCard  img={tooth} route="/dentists" />
-        <SpecialtyCard  img={bone} route="/ophthalmology" />
-        <SpecialtyCard img={skin} route="/dermatology" />
-        <SpecialtyCard  img={neuro} route="/neurology" />
+        <SpecialtyCard title="Cardiology" img={heart} route="/cardiologues" />
+        <SpecialtyCard title="Dentists" img={tooth} route="/dentists" />
+        <SpecialtyCard title="Ophtalmology" img={bone} route="/ophtalmologues" />
+        <SpecialtyCard title="Dermatology" img={skin} route="/dermatologues" />
+        <SpecialtyCard title="Pediatrics" img={tooth} route="/pediatres" />
       </div>
     </section>
   );
@@ -164,16 +166,23 @@ export default function App() {
   return (
     <Router>
       <Routes>
+      
         <Route path="/" element={<AppContent />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/register-doctor" element={<RegisterDoctor />} />
         <Route path="/login-doctor" element={<LoginDoctor />} />
         <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+        
         <Route path="/dentists" element={<Dentists />} />
-        <Route path="/cardio" element={<Cardiology />} />
-        <Route path="/dermatology" element={<Dermatology />} />
-        <Route path="/neurology" element={<neurology />} />
-        <Route path="/ophthalmology" element={<Ophthalmology />} />
+        <Route path="/booking/reason" element={<Step2Reason />} />
+        <Route path="/booking/auth" element={<Step4Auth />} />
+        <Route path="/bookingsuccess" element={<BookingSuccess />} />
+        <Route path="/cardiologues" element={<Cardiologues />} />
+        <Route path="/ophtalmologues" element={<Ophtalmologues />} />
+        <Route path="/dermatologues" element={<Dermatologues />} />
+        <Route path="/pediatres" element={<Pediatres />} />
+       
       </Routes>
     </Router>
   );

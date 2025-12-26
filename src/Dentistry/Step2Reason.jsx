@@ -116,7 +116,7 @@ const Step2Reason = () => {
             </span>
             <h2 className="step-title">Confirm the appointment time</h2>
             <p className="confirm-msg">
-              You have selected <strong>{day} à {time}</strong> for  <strong>{selectedReason}</strong>.
+              You have selected <strong>{day} at {time}</strong> for  <strong>{selectedReason}</strong>.
             </p>
             <button className="btn-continue" onClick={handleContinue}>
               CONTINUE
