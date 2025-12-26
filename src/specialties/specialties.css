@@ -1,12 +1,13 @@
-/* specialties.css */
+/* specialties.css - updated for tighter, prettier layout */
 
 .page-container {
-  min-height: 100%;
+  min-height: calc(100vh - 80px); /* header height */
   width: 100%;
   background-color: #ffe5cc;
-  padding: 20px;
+  padding: 16px 20px 24px; /* NO top pushing header */
   box-sizing: border-box;
 }
+
 html, body {
   height: 100%;
   margin: 0;
@@ -14,50 +15,225 @@ html, body {
   background-color: #ffe5cc;
 }
 
+/* Center and constrain the whole list */
+.title {
+  font-size: 2rem;
+  margin: 8px 0 20px;
+  color: #333;
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Each doctor card */
 .doctor-card {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #fff; /* card background */
+  background-color: #fff; 
   border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  max-width: 900px; 
-  width: 100%;     
+  padding: 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  max-width: 900px;
+  width: 100%;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
+  gap: 16px;
+  box-sizing: border-box;
 }
 
-/* Doctor info */
+/* Doctor info (left) - flexible */
 .doctor-info {
   display: flex;
-  gap: 15px;
+  gap: 16px;
+  align-items: center;    /* CENTER vertically */
+  flex: 1 1 auto;         /* take remaining space */
+  min-width: 0;           /* allow truncation */
 }
+
 
 /* Doctor image */
 .doc-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  width: 140px;          /* bigger */
+  height: 140px;
+  border-radius: 14px;
   object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+
+  /* remove these: top, left, position */
 }
 
-/* Appointment button */
+
+
+/* Meta to the right of image */
+.doctor-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.doctor-meta h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.muted {
+  color: #666;
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+/* Buttons */
 .btn-appoint {
-  margin-top: 10px;
-  padding: 8px 15px;
+  margin-top: 100px;        /* push down */
+  padding: 10px 16px;     /* slightly bigger */
+  font-size: 0.95rem;
   background-color: #ff6600;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 600;
 }
 
-/* Title styling */
-.title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
+/* wrapper to offset appointment button */
+.appointment-btn-wrapper {
+  margin-left: 28px;      /* slight right shift */
+}
+
+
+
+/* RIGHT column - compact fixed width */
+.card-right {
+  width: 320px;           /* fixed width to keep calendar small and consistent */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+
+/* Compact month header */
+.mini-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fff, #fff);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.month-label {
+  font-weight: 600;
   text-align: center;
+  font-size: 0.95rem;
+}
+.nav-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* compact calendar grid */
+.compact-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 8px;
+}
+.compact-day {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* next available row */
+.next-rdv.compact-next {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: linear-gradient(180deg,#fff,#fff);
+  font-size: 0.9rem;
+}
+.next-text {
+   font-size: 0.88rem; 
+   color: #fd6c41;
+}
+
+/* time view (compact) */
+.time-header-compact {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.nav-text {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* time grid - scrollable if too tall */
+.time-grid-compact {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.time-column-compact {
+  min-width: 80px;
+  background: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.day-title {
+  margin: 0 0 6px 0;
+  font-size: 0.85rem;
+}
+.no-time {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* compact time slot */
+.time-slot-compact {
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9rem;
+  background: #f7f7f7;
+  border: 1px solid #f0f0f0;
+}
+
+/* Responsive: smaller screens stack */
+@media (max-width: 880px) {
+  .doctor-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-right {
+    width: 100%;
+  }
+  .compact-calendar { grid-template-columns: repeat(7, 1fr); }
 }

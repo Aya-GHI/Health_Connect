@@ -505,3 +505,38 @@ h1, h2, h3 {
     background-position: center;
     background-repeat: no-repeat;
 }
+/*hetha mte3 gif*/
+/* ----------------- hover-video for specialties ----------------- */
+/* video sits under the overlay but above the background image */
+.specialty-card {
+  position: relative; /* ensure absolute children align */
+  overflow: hidden;   /* keep video clipped */
+}
+
+/* video fills the card exactly */
+.specialty-card video {
+  position: absolute;
+  inset: 0;             /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* ensures exact fit without distortion */
+  display: block;
+  opacity: 0;
+  pointer-events: none; /* allow clicks through to the card */
+  transition: opacity 220ms ease;
+  z-index: 1;           /* below overlay content */
+}
+
+/* show the video (fade in) on hover/focus */
+.specialty-card:hover video,
+.specialty-card:focus-within video {
+  opacity: 1;
+}
+
+/* Make sure overlay (title/text) stays on top */
+.specialty-card > .specialty-overlay,
+.specialty-card > .card-content {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+}

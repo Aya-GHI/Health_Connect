@@ -1,7 +1,15 @@
+// src/Cardiology/Cardiologues.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../authen/styles/Cardiologues.css";
 
+/* layout & header imports (kept as requested) */
+import Header from "../header";
+import MiniCalendar from "../calendar/MiniCalendar"; // kept import as requested
+
+/* styling: updated specialties css */
+import "../specialties/specialties.css";
+
+/* images from your first file */
 import cardio1 from "../assets/cardio1.jpg";
 import cardio2 from "../assets/cardio2.jpg";
 import cardio3 from "../assets/cardio3.jpg";
@@ -27,7 +35,7 @@ const cardiologues = [
   {
     id: 1,
     name: "Dr. Syrine Ben Jeddou",
-    role: "Cardiologue",
+    role: "Cardiologist",
     address: "Centre medical Aicha, L'Aouina, Tunis",
     img: cardio1,
     nextAppointment: "Monday 6 July 2026",
@@ -35,7 +43,7 @@ const cardiologues = [
   {
     id: 2,
     name: "Dr Fourat ZOUARI",
-    role: "Cardiologue",
+    role: "Cardiologist",
     address: "Centre médical Violette, Ennasr 2, Ariana",
     img: cardio2,
     nextAppointment: "Friday 15 April 2026",
@@ -43,14 +51,14 @@ const cardiologues = [
   {
     id: 3,
     name: "Dr Tarek BEN CHEDLI",
-    role: "Cardiologue",
+    role: "Cardiologist",
     address: "Soukra Médical, La Soukra, Ariana",
     img: cardio3,
     nextAppointment: "Thursday 5 May 2026",
   },
 ];
 
-function Cardiologues() {
+export default function Cardiologues() {
   const [currentMonth, setCurrentMonth] = useState(0);
   const [showTimes, setShowTimes] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -62,8 +70,8 @@ function Cardiologues() {
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   const handleTimeSelection = (time, day) => {
-  navigate("/booking/reason", {
-    state: {
+    navigate("/booking/reason", {
+      state: {
         doctor: selectedDoc,
         specialty: "cardiology",
         time: time,
@@ -71,9 +79,8 @@ function Cardiologues() {
         month: months[currentMonth],
         year: year
       }
-  });
-};
-
+    });
+  };
 
   const handleShowTimes = (doc) => {
     setSelectedDoc(doc);
@@ -81,62 +88,94 @@ function Cardiologues() {
   };
 
   return (
-    <div className="page">
-      <h1 className="title">Cardiologues</h1>
+    <>
+    <Header />
+
+    <div className="page-container">
+
+      <h1 className="title">Cardiologists</h1>
 
       {cardiologues.map((doc) => (
-        <div className="card" key={doc.id}>
-          {/* LEFT */}
-          <div className="left">
-            <img src={doc.img} alt={doc.name} className="doctor-img" />
-            <h3>{doc.name}</h3>
-            <p className="role">{doc.role}</p>
-            <p className="address">📍 {doc.address}</p>
+        <div key={doc.id} className="doctor-card">
+          {/* LEFT: Doctor info (flexible) */}
+          <div className="doctor-info">
+            <img src={doc.img} alt={doc.name} className="doc-img" />
+            <div className="doctor-meta">
+              <h3>{doc.name}</h3>
+              <p className="muted">{doc.role}</p>
+              <p className="muted">📍 {doc.address}</p>
+
+              <div className="appointment-btn-wrapper">
+                <button
+                  className="btn-appoint"
+                  onClick={() => handleShowTimes(doc)}
+                >
+                  Book an appointment
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* RIGHT */}
-          <div className="right">
+          {/* RIGHT: compact calendar/time column (fixed width) */}
+          <div className="card-right">
             {!showTimes || selectedDoc?.id !== doc.id ? (
               <>
-                <div className="calendar-header">
-                  <span onClick={() => setCurrentMonth(m => (m === 0 ? 11 : m - 1))}>◀</span>
-                  <strong>{months[currentMonth]} {year}</strong>
-                  <span onClick={() => setCurrentMonth(m => (m === 11 ? 0 : m + 1))}>▶</span>
+                <div className="mini-calendar-header">
+                  <button
+                    className="nav-icon"
+                    onClick={() => setCurrentMonth(m => (m === 0 ? 11 : m - 1))}
+                    aria-label="previous month"
+                  >
+                    ◀
+                  </button>
+
+                  <div className="month-label">
+                    {months[currentMonth]} {year}
+                  </div>
+
+                  <button
+                    className="nav-icon"
+                    onClick={() => setCurrentMonth(m => (m === 11 ? 0 : m + 1))}
+                    aria-label="next month"
+                  >
+                    ▶
+                  </button>
                 </div>
 
-                <div className="calendar">
+                <div className="compact-calendar">
                   {days.map((day) => (
-                    <div key={day} className="day">{day}</div>
+                    <div key={day} className="compact-day">{day}</div>
                   ))}
                 </div>
 
-                <div className="next-rdv" onClick={() => handleShowTimes(doc)}>
-                  <span>
-                    Prochain RDV le <strong>{doc.nextAppointment}</strong>
+                <div
+                  className="next-rdv compact-next"
+                  onClick={() => handleShowTimes(doc)}
+                >
+                  <span className="next-text">
+                    Next available <strong>{doc.nextAppointment}</strong>
                   </span>
                   <span className="arrow">›</span>
                 </div>
               </>
             ) : (
               <>
-                <div className="time-header">
-                  <span className="back-arrow" onClick={() => setShowTimes(false)}>
-                    ◀ Back to calendar
-                  </span>
+                <div className="time-header-compact">
+                  <button className="nav-text" onClick={() => setShowTimes(false)}>◀ Back</button>
                   <strong>Available times</strong>
                 </div>
 
-                <div className="time-grid">
+                <div className="time-grid-compact">
                   {Object.entries(timeSlots).map(([day, times]) => (
-                    <div key={day} className="time-column">
-                      <h4>{day}</h4>
+                    <div key={day} className="time-column-compact">
+                      <h5 className="day-title">{day}</h5>
                       {times.length === 0 ? (
                         <span className="no-time">—</span>
                       ) : (
                         times.map((t) => (
                           <div
                             key={t}
-                            className="time-slot"
+                            className="time-slot-compact"
                             onClick={() => handleTimeSelection(t, day)}
                           >
                             {t}
@@ -152,7 +191,6 @@ function Cardiologues() {
         </div>
       ))}
     </div>
+  </>
   );
 }
-
-export default Cardiologues;
