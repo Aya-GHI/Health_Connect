@@ -57,9 +57,7 @@ const RegisterForm = () => {
     
     if (!formData.dateOfBirth.trim()) {
       newErrors.dateOfBirth = 'Date of birth is required';
-    } else if (!/^\d{2}\/\d{2}\/\d{4}$/.test(formData.dateOfBirth)) {
-      newErrors.dateOfBirth = 'Date must be in DD/MM/YYYY format';
-    }
+    } 
     
     if (!formData.gender) {
       newErrors.gender = 'Gender is required';
@@ -81,32 +79,51 @@ const RegisterForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newErrors = validateForm();
-    
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-    
-    setIsLoading(true);
-    
-    try {
-      // Simulate API call
-      console.log('Registration data:', formData);
-      
-      // Success - redirect to login or dashboard
-      setTimeout(() => {
-        setIsLoading(false);
-        alert('Registration successful! Please check your email for verification.');
-        navigate('/login');
-      }, 2000);
-      
-    } catch (error) {
-      setIsLoading(false);
-      setErrors({ submit: 'Registration failed. Please try again.' });
-    }
+  e.preventDefault();
+  const newErrors = validateForm();
+
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  setIsLoading(true);
+
+  // 🔁 mapping between React & Flask
+  const payload = {
+    firstName: formData.firstName,
+    lastName: formData.surname,
+    email: formData.email,
+    phone: formData.phoneNumber,
+    dateOfBirth: formData.dateOfBirth, // تأكدي الفورما DD/MM/YYYY ولا YYYY-MM-DD
+    gender: formData.gender,
+    password: formData.password,
   };
+
+  try {
+    const response = await fetch("http://127.0.0.1:5000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("Account created successfully ✅");
+      navigate("/login");
+    } else {
+      setErrors({ submit: result.message || "Registration failed" });
+    }
+  } catch (error) {
+    setErrors({ submit: "Backend not reachable ❌" });
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="register-container">
@@ -195,15 +212,14 @@ const RegisterForm = () => {
             <div className="form-group">
               <label htmlFor="dateOfBirth">Date Of Birth</label>
               <input
-                type="text"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                placeholder="DD/MM/YYYY"
-                value={formData.dateOfBirth}
-                onChange={handleChange}
-                className={errors.dateOfBirth ? 'error' : ''}
-                required
-              />
+  type="date"
+  id="dateOfBirth"
+  name="dateOfBirth"
+  value={formData.dateOfBirth}
+  onChange={handleChange}
+  required
+/>
+
               {errors.dateOfBirth && (
                 <span className="error-text">{errors.dateOfBirth}</span>
               )}
