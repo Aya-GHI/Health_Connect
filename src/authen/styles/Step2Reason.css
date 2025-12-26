@@ -1,41 +1,263 @@
+/* booking layout - swap left/right so main appears on the right */ 
 .booking-layout {
   display: flex;
   justify-content: center;
-  gap: 25px;
-  background-color: #f0f5f9; /* نفس لون خلفية Doctolib */
-  padding: 40px 20px;
+  gap: 28px;
+  background-color: #ffe5cc; /* same as specialties page */
+  padding: 80px 20px 40px; /* top padding pushes content down */
   min-height: 100vh;
+  box-sizing: border-box;
+  flex-direction: row-reverse;
+  align-items: flex-start;
 }
 
-.booking-main { flex: 2; max-width: 650px; }
-.booking-sidebar { flex: 1; max-width: 350px; }
+/* Adjusted sizes: right main smaller, left sidebar larger */
+.booking-main {
+  flex: 1;           
+  max-width: 400px;  
+  padding: 0 10px; /* ADD this to give white-card breathing space */
+}
 
 .white-card {
-  background: white;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-top: 15px;
+  max-width: 100%;  /* allow full width of booking-main */
+  background-color: #fff; /* ensure white background */
+  padding: 20px;         /* add some inner spacing */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  margin: 20px auto;     /* top/bottom spacing and centered horizontally */
+  transform: translateY(10px); /* remonte légèrement le texte */
+
 }
 
-.step-title { color: #052c48; margin-bottom: 25px; font-size: 22px; }
+/* Sidebar adjustments */
+.booking-sidebar {
+  flex: 1.5;          /* smaller proportion so it’s not huge */
+  max-width: 450px;   /* limit width */
+  align-self: flex-start;
+  transform: translateY(80px); /* remonte légèrement le texte */
 
-.options-list { border: 1px solid #e2e8f0; border-radius: 8px; }
+}
 
+/* Wrap RDV summary in a card */
+.rdv-summary-details {
+  background: #fff;              /* white card */
+  padding: 16px;                 /* inner spacing */
+  border-radius: 12px;           /* match doctor card */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  margin-top: 0px;    
+  align-items: center; 
+  transform: translateY(20px); /* ou 0 pour aucun décalage */
+
+}
+
+.rdv-summary-details h5 {
+  margin-top: 7px;
+  font-size: 1rem;
+  color: BLACK;
+  align-items: center; 
+
+}
+
+.rdv-summary-details p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: #333;
+  align-items: center; 
+  transform: translateY(-10px); /* remonte légèrement le texte */
+
+}
+
+
+
+/* Keep title styling */
+.step-title {
+  color: #052c48;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* Options list unchanged but will now sit in a narrower card */
+.options-list {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Option styling unchanged for visual consistency */
 .option-row {
   display: flex;
   justify-content: space-between;
-  padding: 18px 25px;
+  align-items: center;
+  padding: 16px 20px;
   border-bottom: 1px solid #e2e8f0;
   cursor: pointer;
   transition: 0.2s;
 }
-
-.option-row:hover { background-color: #f8fbff; color: #007ad9; }
+.option-row:hover {
+  background-color: #f8fbff;
+  color: #007ad9;
+}
 .option-row:last-child { border-bottom: none; }
-.blue-arrow { font-size: 24px; color: #007ad9; }
+.blue-arrow { font-size: 22px; color: #007ad9; }
 
-/* Sidebar Styling */
-.doc-summary { display: flex; gap: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; margin-bottom: 15px; }
-.doc-img-mini { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; }
-.rdv-summary-details h5 { color: #052c48; margin-bottom: 10px; }
+/* Center the proceed button inside the reasons card */
+.appointment-btn-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;   /* CENTER the button horizontally */
+}
+.btn-appoint {
+  padding: 10px 18px;        /* slightly larger */
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: #ff6600;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* =========== Sidebar (doctor info) container styling =========== */
+
+/* Make the doctor summary into a distinct container/card */
+.doc-summary {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+/* Slightly larger doctor image in the sidebar card */
+.doc-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+/* Doctor meta remains centered vertically inside the card */
+.doctor-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+.doctor-meta h3 { margin: 0; 
+  font-size: 1.5rem; 
+  transform: translateY(-15px); /* remonte légèrement le texte */
+
+}
+.muted { color: #666; font-size: 1.2rem; margin: 0; }
+
+/* Appointment / RDV summary sits under the doctor card */
+
+
+/* Back button: keep translation but reduce large negative translate so it stays visible */
+/* Back arrow: fixed on the far left of the page */
+.back-btn {
+  position: absolute;   /* absolute positioning */
+  top: 35px;            /* adjust vertical position */
+  left: 200px;           /* very left */
+  display: inline-flex;
+  align-items: center;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  transform: none;      /* remove previous translate */
+  z-index: 10;          /* ensure it’s above everything else */
+}
+
+.back-btn:hover .back-arrow-img {
+  transform: translateX(-3px); /* subtle hover movement */
+}
+
+.back-arrow-img {
+  width: 30px;   /* adjust size */
+  height: 30px;
+  object-fit: contain;
+}
+
+/* Responsive adjustments: on narrow screens stack as original (sidebar below main) */
+@media (max-width: 880px) {
+  .booking-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+.booking-main {
+  flex: 1;           /* right side smaller */
+  max-width: 450px;  /* balanced size */
+  min-width: 320px;  /* ensure white card always fits */
+}
+
+.booking-sidebar {
+  flex: 1.5;         /* left side bigger but not huge */
+  max-width: 500px;  /* balanced size */
+}
+
+.white-card {
+  max-width: 100%;   /* allow it to fully fill the right container */
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+  .doc-summary { width: 100%; }
+  .appointment-btn-wrapper { justify-content: center; }
+}
+
+/* Texte du médecin centré */
+.doctor-meta {
+  text-align: center;      /* centre horizontalement le texte */
+  display: flex;
+  flex-direction: column;  /* empile nom et rôle verticalement */
+  align-items: center; 
+
+}
+.doctor-meta p { 
+  transform: translateX(-35px); /* remonte légèrement le texte */
+  font-size: 1rem; 
+
+}
+.white-card {
+  max-width: 350px;  /* réduit la largeur maximale */
+  width: 100%;       /* garde la largeur responsive */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;     /* assure un peu d'espace à l'intérieur */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.white-card {
+  max-width: 280px;  /* encore plus compacte */
+  width: 100%;       
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;     
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+
+.white-card {
+  max-width: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 10px 20px; /* réduit le padding vertical */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+
+  transform: translateY(45px); /* supprime tout décalage qui augmente la hauteur */
+}

@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../authen/styles/Step2Reason.css";
+import "../authen/styles/Step3Confirm.css"; // keep styles for the popup
+import backArrow from "../assets/back-arrow.png";
+import Header from "../header.jsx";
+
 
 const reasonsBySpecialty = {
   dentistry: [
@@ -9,10 +13,7 @@ const reasonsBySpecialty = {
     "Consultation d'occlusodontie",
     "Consultation M'T Dents",
   ],
-  cardiology: [
-    "Consultation de cardiologie",
-    "Consultation pré-opératoire de cardiologie",
-  ],
+  cardiology: ["Consultation de cardiologie", "Consultation pré-opératoire de cardiologie"],
   ophtalmology: [
     "Consultation",
     "Lentilles de contact",
@@ -30,7 +31,7 @@ const reasonsBySpecialty = {
     "Avis pour une lésion cutanée suspecte",
     "Consultation pour mycose ou problèmes d'ongles",
     "Traitement de verrues",
-    "Consultation de dermatologie esthétique",,
+    "Consultation de dermatologie esthétique",
   ],
   pediatrics: [
     "Consultation de suivi pédiatrique (bilan de santé)",
@@ -48,32 +49,41 @@ const Step2Reason = () => {
   const { specialty, doctor, day, time } = location.state || {};
   const reasons = reasonsBySpecialty[specialty] || [];
 
+  const [selectedReason, setSelectedReason] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
+
   const handleSelectReason = (reason) => {
-    navigate("/booking/confirm", {
-      state: {
-        specialty,
-        doctor,
-        day,
-        time,
-        reason,
-      },
+    setSelectedReason(reason);
+    setShowPopup(true); // show popup instead of navigating
+  };
+
+  const handleContinue = () => {
+    navigate("/booking/auth", {
+      state: { specialty, doctor, day, time, reason: selectedReason },
     });
   };
 
   return (
     <div className="booking-layout">
       <div className="booking-main">
-        <button className="back-btn" onClick={() => navigate(-1)}>← Étape précédente</button>
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          <img src={backArrow} alt="Back" className="back-arrow-img" />
+        </button>
+
         <div className="white-card">
-          <h2 className="step-title">Choisissez votre motif de consultation</h2>
+          <h2 className="step-title">Choose your appointment's reason</h2>
           <div className="options-list">
             {reasons.map((r) => (
-  // قمت بتغيير handleSelect إلى handleSelectReason هنا
-  <div key={r} className="option-row" onClick={() => handleSelectReason(r)}> 
-    <span>{r}</span>
-    <span className="blue-arrow">›</span>
-  </div>
-))}
+              <div key={r} className="option-row" onClick={() => handleSelectReason(r)}>
+                <span>{r}</span>
+                <span className="blue-arrow">›</span>
+              </div>
+            ))}
+          </div>
+          <div className="appointment-btn-wrapper">
+            <button className="btn-appoint" onClick={() => handleSelectReason(reasons[0])}>
+              Proceed
+            </button>
           </div>
         </div>
       </div>
@@ -81,18 +91,36 @@ const Step2Reason = () => {
       {/* Sidebar Summary */}
       <div className="booking-sidebar">
         <div className="doc-summary">
-          <img src={doctor?.img} alt="" className="doc-img-mini" />
-          <div>
-            <h4>{doctor?.name}</h4>
-            <p className="sub-text">{doctor?.role}</p>
+          <img src={doctor?.img} alt="" className="doc-img" />
+          <div className="doctor-meta">
+            <h3>{doctor?.name}</h3>
+            <p className="muted">{doctor?.role}</p>
           </div>
         </div>
         <div className="rdv-summary-details">
           <h5>Votre rendez-vous en détail</h5>
           <p>📍 {doctor?.address}</p>
-          {day && <p>📅 {day} à {time}</p>}
+          {day && <p>📅 {day} at {time}</p>}
         </div>
       </div>
+
+      {/* Popup for Step3Confirm */}
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <span className="close" onClick={() => setShowPopup(false)}>
+              &times;
+            </span>
+            <h2 className="step-title">Confirmez l'heure du rendez-vous</h2>
+            <p className="confirm-msg">
+              Vous avez sélectionné le <strong>{day} à {time}</strong> pour <strong>{selectedReason}</strong>.
+            </p>
+            <button className="btn-continue" onClick={handleContinue}>
+              CONTINUER
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

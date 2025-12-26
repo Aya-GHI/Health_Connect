@@ -13,8 +13,7 @@ import doctorsImg from "./assets/doc.png";
 
 import Dentists from "./Dentistry/DentistsPage.jsx";
 import Step2Reason from "./Dentistry/Step2Reason";
-import Step3Confirm from "./Dentistry/Step3Confirm";
-import Step4Auth from "./Dentistry/Step4Auth";
+import Step4Auth from "./Dentistry/Step4Auth.jsx";
 import BookingSuccess from "./Dentistry/BookingSuccess.jsx";
 
 
@@ -181,7 +180,6 @@ export default function App() {
         
         <Route path="/dentists" element={<Dentists />} />
         <Route path="/booking/reason" element={<Step2Reason />} />
-        <Route path="/booking/confirm" element={<Step3Confirm />} />
         <Route path="/booking/auth" element={<Step4Auth />} />
         <Route path="/bookingsuccess" element={<BookingSuccess />} />
         <Route path="/cardiologues" element={<Cardiologues />} />
