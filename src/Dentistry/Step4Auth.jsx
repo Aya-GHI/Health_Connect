@@ -1,69 +1,55 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // زدنا useNavigate هنا
+import { useLocation, useNavigate } from "react-router-dom";
 import "../authen/styles/Step4Auth.css";
+import backArrow from "../assets/back-arrow.png";
+
 
 const Step4Auth = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // نادينالو هنا
+  const navigate = useNavigate();
   const { doctor, reason, day, time } = location.state || {};
 
   return (
-    <div className="booking-container">
-      <div className="booking-wrapper">
-        <div className="booking-main">
-          <h2 className="main-title">Votre rendez-vous n'est pas encore confirmé.</h2>
-          
-          <div className="auth-card">
-            <p>Nouveau sur Health Connect ?</p>
-            {/* الربط بصفحة التسجيل */}
-            <button className="btn-blue" onClick={() => navigate("/register")}>
-              S'INSCRIRE
-            </button>
-          </div>
+      
+      <div>
+          {/* زر الرجوع */}
+          <button className="back-btn" onClick={() => navigate(-1)}>
+            <img src={backArrow} alt="Back" className="back-arrow-img" />
+          </button>
+        <div className="booking-container">
+          <div className="booking-wrapper" style={{ justifyContent: "center" }}>
+            <div className="booking-main">
+              <h3 className="main-title">Your appointment has not been confirmed yet. 
+                Please log in first.
+              </h3>
 
-          <div className="auth-card">
-            <p>J'ai déjà un compte Health Connect </p>
-            {/* الربط بصفحة الدخول */}
-            <button
-  className="btn-yellow"
-  onClick={() => {
-    navigate("/login", {
-      state: {
-        doctor,
-        reason,
-        day,
-        time,
-      },
-    });
-  }}
->
-  SE CONNECTER
-</button>
-
-          </div>
-        </div>
-
-        {/* الـ Sidebar اللي ديما على اليمين */}
-        <div className="booking-sidebar">
-          <div className="sidebar-card">
-             <div className="sidebar-header-blue">
-                📅 {day} à {time}
-             </div>
-             <div className="doc-mini-profile">
-                <img src={doctor?.img} alt="" className="mini-avatar" />
-                <div>
-                   <h4>{doctor?.name}</h4>
-                   <p>{doctor?.role}</p>
+              <div className="auth-cards-wrapper">
+                <div className="auth-card">
+                  <p>New in  Health Connect ?</p>
+                  <button className="btn-blue" onClick={() => navigate("/register")}>
+                    SIGN UP
+                  </button>
                 </div>
-             </div>
-             <div className="rdv-details-list">
-                <p>📍 {doctor?.address}</p>
-                <p>🩺 {reason}</p>
-             </div>
+
+                <div className="auth-card">
+                  <p>I already have a Health Connect account</p>
+                  <button
+                    className="btn-yellow"
+                    onClick={() => {
+                      navigate("/login", {
+                        state: { doctor, reason, day, time },
+                      });
+                    }}
+                  >
+                    SIGN IN
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </div>
+
   );
 };
 

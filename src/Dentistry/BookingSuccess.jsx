@@ -20,9 +20,9 @@ const BookingSuccess = () => {
         <div className="booking-main">
           <div className="success-card">
             <div className="success-icon-check">✓</div>
-            <h2 className="success-title">Votre rendez-vous est confirmé !</h2>
-            <p className="success-text">Un e-mail de confirmation vous a été envoyé.</p>
-            <button className="btn-home" onClick={() => navigate("/")}>Retour à l'accueil</button>
+            <h2 className="success-title">Your appointment is confirmed!</h2>
+            <p className="success-text">A confirmation email has been sent to you.</p>
+            <button className="btn-home" onClick={() => navigate("/")}>Back to home</button>
           </div>
         </div>
 

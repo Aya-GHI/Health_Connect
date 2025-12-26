@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../authen/styles/Dermatologues.css";
+import "../specialties/specialties.css";
+
+import Header from "../header";
 
 import dermato1 from "../assets/dermato1.jpg";
 import dermato2 from "../assets/dermato2.jpg";
@@ -81,77 +83,122 @@ function Dermatologues() {
   };
 
   return (
-    <div className="page">
-      <h1 className="title">Dermatologues</h1>
+    <>
+  <Header />
 
-      {dermatologues.map((doc) => (
-        <div className="card" key={doc.id}>
-          {/* LEFT */}
-          <div className="left">
-            <img src={doc.img} alt={doc.name} className="doctor-img" />
+  <div className="page-container">
+    <h1 className="title">Dermatologues</h1>
+
+    {dermatologues.map((doc) => (
+      <div key={doc.id} className="doctor-card">
+
+        {/* LEFT: Doctor info */}
+        <div className="doctor-info">
+          <img src={doc.img} alt={doc.name} className="doc-img" />
+
+          <div className="doctor-meta">
             <h3>{doc.name}</h3>
-            <p className="role">{doc.role}</p>
-            <p className="address">📍 {doc.address}</p>
-          </div>
+            <p className="muted">{doc.role}</p>
+            <p className="muted">📍 {doc.address}</p>
 
-          {/* RIGHT */}
-          <div className="right">
-            {!showTimes || selectedDoc?.id !== doc.id ? (
-              <>
-                <div className="calendar-header">
-                  <span onClick={() => setCurrentMonth(m => (m === 0 ? 11 : m - 1))}>◀</span>
-                  <strong>{months[currentMonth]} {year}</strong>
-                  <span onClick={() => setCurrentMonth(m => (m === 11 ? 0 : m + 1))}>▶</span>
-                </div>
-
-                <div className="calendar">
-                  {days.map((day) => (
-                    <div key={day} className="day">{day}</div>
-                  ))}
-                </div>
-
-                <div className="next-rdv" onClick={() => handleShowTimes(doc)}>
-                  <span>
-                    Prochain RDV le <strong>{doc.nextAppointment}</strong>
-                  </span>
-                  <span className="arrow">›</span>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="time-header">
-                  <span className="back-arrow" onClick={() => setShowTimes(false)}>
-                    ◀ Back to calendar
-                  </span>
-                  <strong>Available times</strong>
-                </div>
-
-                <div className="time-grid">
-                  {Object.entries(timeSlots).map(([day, times]) => (
-                    <div key={day} className="time-column">
-                      <h4>{day}</h4>
-                      {times.length === 0 ? (
-                        <span className="no-time">—</span>
-                      ) : (
-                        times.map((t) => (
-                          <div
-                            key={t}
-                            className="time-slot"
-                            onClick={() => handleTimeSelection(t, day)}
-                          >
-                            {t}
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+            <div className="appointment-btn-wrapper">
+              <button
+                className="btn-appoint"
+                onClick={() => handleShowTimes(doc)}
+              >
+                Book an appointment
+              </button>
+            </div>
           </div>
         </div>
-      ))}
-    </div>
+
+        {/* RIGHT: Calendar / Times */}
+        <div className="card-right">
+          {!showTimes || selectedDoc?.id !== doc.id ? (
+            <>
+              <div className="mini-calendar-header">
+                <button
+                  className="nav-icon"
+                  onClick={() =>
+                    setCurrentMonth((m) => (m === 0 ? 11 : m - 1))
+                  }
+                >
+                  ◀
+                </button>
+
+                <div className="month-label">
+                  {months[currentMonth]} {year}
+                </div>
+
+                <button
+                  className="nav-icon"
+                  onClick={() =>
+                    setCurrentMonth((m) => (m === 11 ? 0 : m + 1))
+                  }
+                >
+                  ▶
+                </button>
+              </div>
+
+              <div className="compact-calendar">
+                {days.map((day) => (
+                  <div key={day} className="compact-day">
+                    {day}
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className="next-rdv compact-next"
+                onClick={() => handleShowTimes(doc)}
+              >
+                <span className="next-text">
+                  Next available <strong>{doc.nextAppointment}</strong>
+                </span>
+                <span className="arrow">›</span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="time-header-compact">
+                <button
+                  className="nav-text"
+                  onClick={() => setShowTimes(false)}
+                >
+                  ◀ Back
+                </button>
+                <strong>Available times</strong>
+              </div>
+
+              <div className="time-grid-compact">
+                {Object.entries(timeSlots).map(([day, times]) => (
+                  <div key={day} className="time-column-compact">
+                    <h5 className="day-title">{day}</h5>
+
+                    {times.length === 0 ? (
+                      <span className="no-time">—</span>
+                    ) : (
+                      times.map((t) => (
+                        <div
+                          key={t}
+                          className="time-slot-compact"
+                          onClick={() => handleTimeSelection(t, day)}
+                        >
+                          {t}
+                        </div>
+                      ))
+                    )}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</>
+
   );
 }
 
