@@ -1,51 +1,39 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0');
-
-/* Apply Inter globally */
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* Optional: headings use Playfair Display */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
-}
-
+/* Layout el Page */
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 80px);
   padding: 2rem;
-  background-color: #FFF8F2;
+  background-color: #FFF8F2; /* Loun Pêche khfif */
+  position: relative;
 }
 
+/* El Card mte3 el Form */
 .login-card {
-  background: rgb(255, 247, 240);
+  background: white;
   padding: 3rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   width: 100%;
   max-width: 450px;
   text-align: center;
 }
 
 .login-card h2 {
-  margin-bottom: 1rem;
-  color: #000000;
-  font-size: 2rem;
-  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: 800;
 }
 
 .login-subtitle {
-  color: #000000;
+  color: #777;
   margin-bottom: 2rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
+/* Form Styles */
 .form-group {
   margin-bottom: 1.5rem;
   text-align: left;
@@ -53,73 +41,161 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-weight: 500;
-  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  color: #444;
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e1e5e9;
-  border-radius: 8px;
+  padding: 0.85rem;
+  border: 1.5px solid #eee;
+  border-radius: 10px;
   font-size: 1rem;
-  transition: all 0.3s;
+  transition: 0.3s;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: #faa108;
-  box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+  background-color: #fffdfa;
 }
 
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-top: 8px;
+}
+
+.forgot-password a {
+  color: #faa108;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+/* Button */
 .login-btn {
   width: 100%;
-  background: linear-gradient(135deg, #faa108, #faa108);
+  background: #faa108;
   color: white;
   border: none;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: 0.3s;
   margin-top: 1rem;
 }
 
 .login-btn:hover {
-  background: linear-gradient(135deg, #faa108, #faa108);
+  background: #e69500;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(44, 90, 160, 0.3);
+  box-shadow: 0 5px 15px rgba(250, 161, 8, 0.3);
 }
 
-.register-link {
+/* --- SUCCESS MODAL STYLES --- */
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.success-modal {
+  background: linear-gradient(135deg, #ffbd8a 0%, #ffbd76 100%);
+  padding: 3rem 2rem;
+  border-radius: 30px;
+  text-align: center;
+  color: white;
+  width: 90%;
+  max-width: 380px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  animation: modalBounce 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.success-modal h2 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: white !important;
+}
+
+.user-display-name {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 10px 0 20px 0;
+  color: #fff;
+}
+
+.success-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* Progress Bar */
+.modal-progress-container {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-top: 2.5rem;
+  overflow: hidden;
+}
+
+.modal-progress-bar {
+  height: 100%;
+  background: white;
+  width: 0%;
+  animation: fillProgress 2s linear forwards;
+}
+
+/* Animations */
+@keyframes modalBounce {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fillProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.login-footer {
   margin-top: 2rem;
-  color: #666;
   font-size: 0.9rem;
 }
 
-.register-link a {
+.login-footer a {
   color: #faa108;
+  font-weight: bold;
   text-decoration: none;
-  font-weight: 500;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .login-container {
-    padding: 1rem;
-  }
-  
-  .login-card {
-    padding: 2rem;
-  }
-  
-  .login-card h2 {
-    font-size: 1.5rem;
-  }
 }
