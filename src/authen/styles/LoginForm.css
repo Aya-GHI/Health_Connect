@@ -199,3 +199,9 @@
   font-weight: bold;
   text-decoration: none;
 }
+.login-error {
+  color: red;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+}

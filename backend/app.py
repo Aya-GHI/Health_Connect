@@ -4,9 +4,9 @@ import mysql.connector
 import hashlib
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
-# 🔗 MySQL connection
+# ================= DATABASE =================
 db = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -16,11 +16,11 @@ db = mysql.connector.connect(
 
 cursor = db.cursor(dictionary=True)
 
-# 🔐 hash password
+# ================= UTILS =================
 def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+    return hashlib.sha256(password.encode("utf-8")).hexdigest()
 
-# ================= TEST ROUTE =================
+# ================= TEST =================
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({"status": "backend working"}), 200
@@ -30,8 +30,11 @@ def home():
 @app.route("/register", methods=["POST"])
 def register():
     try:
-        data = request.json
-        print("DATA RECEIVED:", data)
+        data = request.get_json()
+        print("REGISTER DATA:", data)
+
+        if not data:
+            return jsonify({"message": "No data received"}), 400
 
         hashed_password = hash_password(data["password"])
 
@@ -48,7 +51,7 @@ def register():
             data["lastName"],
             data["email"],
             data["phone"],
-            data["dateOfBirth"],  # لازم YYYY-MM-DD
+            data["dateOfBirth"],  # YYYY-MM-DD
             data["gender"],
             hashed_password
         ))
@@ -59,7 +62,7 @@ def register():
 
     except mysql.connector.Error as err:
         print("MYSQL ERROR:", err)
-        return jsonify({"message": str(err)}), 500
+        return jsonify({"message": "Database error"}), 500
 
     except Exception as e:
         print("GENERAL ERROR:", e)
@@ -70,25 +73,41 @@ def register():
 @app.route("/login", methods=["POST"])
 def login():
     try:
-        data = request.json
+        data = request.get_json()
+        print("LOGIN DATA:", data)
+
+        if not data:
+            return jsonify({"message": "No data received"}), 400
+
         hashed_password = hash_password(data["password"])
 
         cursor.execute(
-            "SELECT id, first_name, last_name, email FROM users WHERE email=%s AND password=%s",
+            """
+            SELECT id, first_name, last_name, email
+            FROM users
+            WHERE email=%s AND password=%s
+            """,
             (data["email"], hashed_password)
         )
 
         user = cursor.fetchone()
 
         if user:
-            return jsonify(user), 200
+            return jsonify({
+                "success": True,
+                "user": user
+            }), 200
 
-        return jsonify({"message": "Invalid email or password"}), 401
+        return jsonify({
+            "success": False,
+            "message": "Invalid email or password"
+        }), 401
 
     except Exception as e:
         print("LOGIN ERROR:", e)
         return jsonify({"message": str(e)}), 500
 
 
+# ================= RUN =================
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
