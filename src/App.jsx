@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
+import DoctorResults from "./DoctorResults"; // juste au-dessus de SearchBar
+
 
 import Login from "./authen/Login.jsx";
 import Register from "./authen/Register.jsx";
@@ -16,17 +18,13 @@ import Step2Reason from "./Dentistry/Step2Reason";
 import Step4Auth from "./Dentistry/Step4Auth.jsx";
 import BookingSuccess from "./Dentistry/BookingSuccess.jsx";
 
-
 //import hanine 
 import Cardiologues from "./Cardiology/Cardiologues.jsx";
 import Ophtalmologues from "./Ophtalmology/Ophtalmologues.jsx";
 import Dermatologues from "./Dermatology/Dermatologues.jsx";
 import Pediatres from "./Pediatrics/Pediatres.jsx";
 
-
 import Header from "./header";
-
-
 
 import heartVideo from "./assets/videos/heart.mp4";
 import eyesVideo from "./assets/videos/eyes.mp4";
@@ -57,7 +55,6 @@ function Specialties() {
     </section>
   );
 }
-
 
 /* ===== Default Specialty Card (unchanged) ===== */
 function SpecialtyCard({ video, route }) {
@@ -100,8 +97,6 @@ function SpecialtyCard({ video, route }) {
   );
 }
 
-
-
 // ======= SEARCH BAR COMPONENT =======
 function SearchBar() {
   const [name, setName] = useState("");
@@ -110,14 +105,14 @@ function SearchBar() {
 
   const handleSearch = async () => {
     try {
-      let url = `http://localhost:5000/doctors?`;
-      if (name) url += `name_like=${name}&`;
-      if (location) url += `location_like=${location}&`;
+      const params = {};
+      if (name) params.name_like = name;
+      if (location) params.location_like = location;
 
-      const response = await axios.get(url);
+      const response = await axios.get("http://127.0.0.1:5000/doctors", { params });
       setResults(response.data);
     } catch (error) {
-      console.error(error);
+      console.error("Search error:", error);
     }
   };
 
@@ -125,35 +120,23 @@ function SearchBar() {
     <div className="search-bar-container">
       <div className="search-bar">
         <span className="material-symbols-outlined">search</span>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <span className="material-symbols-outlined">location_on</span>
-        <input
-          type="text"
-          placeholder="Location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
+        <input type="text" placeholder="Location" value={location} onChange={(e) => setLocation(e.target.value)} />
         <button onClick={handleSearch}>Search</button>
       </div>
 
-      <div className="search-results">
-        {results.map((doctor) => (
-          <div key={doctor.id} className="doctor-card">
-            <h4>{doctor.name}</h4>
-            <p>
-              {doctor.specialty} — {doctor.location}
-            </p>
-          </div>
-        ))}
+    {results.length > 0 && (
+      <div className="results-wrapper">
+        <DoctorResults doctors={results} />
       </div>
+    )}
     </div>
   );
+
 }
+
+
 
 // ======= HOME PAGE CONTENT =======
 function AppContent() {

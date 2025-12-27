@@ -8,6 +8,7 @@ import dentist1 from "../assets/dentist1.jpg";
 import dentist2 from "../assets/dentist2.jpg";
 import dentist3 from "../assets/dentist3.jpg";
 import locationIcon from '../assets/location.png';
+import backArrow from "../assets/back-arrow.png"; 
 
 /* Months */
 const months = [
@@ -87,6 +88,24 @@ function Dentists() {
   return (
     <>
   <Header />
+  <button
+  style={{
+    position: "fixed",
+    top: "120px",   // keep a bit down from the header
+    left: "120px",   // move more to the right
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    zIndex: 10000,
+  }}
+  onClick={() => navigate(-1)}
+>
+  <img
+    src={backArrow}
+    alt="Back"
+    style={{ width: "28px", height: "28px" }}
+  />
+</button>
 
   <div className="page-container">
     <h1 className="title">Dentists</h1>

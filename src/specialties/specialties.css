@@ -295,3 +295,21 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis; /* ensures text stays in line */
 }
+.back-btn {
+  position: fixed;       /* stays visible while scrolling */
+  top: 120px;            /* push below the header, adjust if needed */
+  left: 80px;            /* move more to the right */
+  z-index: 2000;         /* higher than header */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.back-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+

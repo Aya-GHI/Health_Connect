@@ -8,6 +8,7 @@ import dermato1 from "../assets/dermato1.jpg";
 import dermato2 from "../assets/dermato2.jpg";
 import dermato3 from "../assets/dermato3.jpg";
 import locationIcon from '../assets/location.png';
+import backArrow from "../assets/back-arrow.png"; 
 
 /* Months */
 const months = [
@@ -16,7 +17,7 @@ const months = [
   "September", "October", "November", "December"
 ];
 
-/* Fake time slots */
+/*  time slots */
 const timeSlots = {
   Monday: ["11:00", "11:15", "11:30", "11:45", "14:30", "14:45", "15:15", "15:30"],
   Tuesday: ["09:30", "09:45", "10:00", "10:15", "10:30", "10:45", "11:00", "11:15"],
@@ -87,6 +88,24 @@ function Dermatologues() {
   return (
     <>
   <Header />
+   <button
+  style={{
+    position: "fixed",
+    top: "120px",   // keep a bit down from the header
+    left: "120px",   // move more to the right
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    zIndex: 10000,
+  }}
+  onClick={() => navigate(-1)}
+>
+  <img
+    src={backArrow}
+    alt="Back"
+    style={{ width: "28px", height: "28px" }}
+  />
+</button>
 
   <div className="page-container">
     <h1 className="title">Dermatologists</h1>
