@@ -7,6 +7,8 @@ import Header from "../header";
 import pedia1 from "../assets/pedia1.jpg";
 import pedia2 from "../assets/pedia2.jpg";
 import pedia3 from "../assets/pedia3.jpg";
+import locationIcon from '../assets/location.png';
+
 
 /* Months */
 const months = [
@@ -38,7 +40,7 @@ const pediatres = [
     id: 2,
     name: "Dr. Elyes Lassoued",
     role: "Pediatrician",
-    address: "La Rose Medical Center, Berges du Lac 2",
+    address: "Rose Med Center, Ben Arous",
     img: pedia2,
     nextAppointment: "Thursday, 15 September 2026",
   },
@@ -100,8 +102,10 @@ function Pediatres() {
           <div className="doctor-meta">
             <h3>{doc.name}</h3>
             <p className="muted">{doc.role}</p>
-            <p className="muted">📍 {doc.address}</p>
-
+            <p className="muted">
+              <img src={locationIcon} alt="location" className="location-icon" /> 
+                          {doc.address}
+            </p>
             <div className="appointment-btn-wrapper">
               <button
                 className="btn-appoint"
@@ -154,7 +158,7 @@ function Pediatres() {
                 onClick={() => handleShowTimes(doc)}
               >
                 <span className="next-text">
-                  Next available <strong>{doc.nextAppointment}</strong>
+                  Next available on<strong>{doc.nextAppointment}</strong>
                 </span>
                 <span className="arrow">›</span>
               </div>

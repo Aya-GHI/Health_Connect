@@ -7,6 +7,7 @@ import Header from "../header";
 import ophtalmo1 from "../assets/ophtalmo1.jpg";
 import ophtalmo2 from "../assets/ophtalmo2.jpg";
 import ophtalmo3 from "../assets/ophtalmo3.jpg";
+import locationIcon from '../assets/location.png';
 
 /* Months */
 const months = [
@@ -100,7 +101,10 @@ function Ophtalmologues() {
           <div className="doctor-meta">
             <h3>{doc.name}</h3>
             <p className="muted">{doc.role}</p>
-            <p className="muted">📍 {doc.address}</p>
+            <p className="muted">
+              <img src={locationIcon} alt="location" className="location-icon" /> 
+                          {doc.address}
+            </p>
 
             <div className="appointment-btn-wrapper">
               <button
@@ -154,7 +158,7 @@ function Ophtalmologues() {
                 onClick={() => handleShowTimes(doc)}
               >
                 <span className="next-text">
-                  Next available <strong>{doc.nextAppointment}</strong>
+                  Next available on <strong>{doc.nextAppointment}</strong>
                 </span>
                 <span className="arrow">›</span>
               </div>

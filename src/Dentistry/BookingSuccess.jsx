@@ -65,13 +65,7 @@ const BookingSuccess = () => {
 
             <div className="modal-actions">
               <button className="btn-home" onClick={() => navigate("/")}>
-                Back to home
-              </button>
-              <button
-                className="btn-close-secondary"
-                onClick={() => navigate(-1)}
-              >
-                Close
+                Back to Homepage
               </button>
             </div>
           </div>

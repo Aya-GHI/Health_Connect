@@ -76,6 +76,7 @@ html, body {
   flex-shrink: 0;
   align-self: center;             /* ⭐ EXTRA SAFETY */
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-left: 4px;
 }
 
 /* Text + button */
@@ -98,7 +99,16 @@ html, body {
 .muted {
   color: #666;
   margin: 0;
-  font-size: 0.92rem;
+  font-size: 0.92rem ;
+  transform: translateX(80px);
+  gap: 0.3rem; /* space between icon and text */
+
+}
+
+.location-icon {
+  width: 0.92rem;    /* same size as font */
+  height: 0.92rem;   /* same size as font */
+  object-fit: contain;
 }
 
 /* Appointment button */
@@ -251,4 +261,37 @@ html, body {
   .card-right {
     width: 100%;
   }
+}
+.doctor-info {
+  display: flex;
+  align-items: center;  /* vertically center image + meta */
+  gap: 5px;   /* smaller gap, moves image closer to text */
+  flex: 1;              /* allows doctor-meta to grow */
+  min-width: 0;         /* important for ellipsis to work */
+}
+
+.doctor-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+  flex: 1;             /* ⭐ allow it to use remaining space */
+  min-width: 0;        /* ⭐ allows text to shrink without overflowing */
+}
+
+.muted {
+  display: flex;       
+  align-items: center;
+  gap: 0.3rem;        
+  font-size: 0.92rem;
+  color: #666;
+  text-align: left;
+  min-width: 0;        /* important to prevent overlapping */
+}
+
+.muted span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* ensures text stays in line */
 }

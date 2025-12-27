@@ -3,7 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../authen/styles/Step2Reason.css";
 import "../authen/styles/Step3Confirm.css"; // keep styles for the popup
 import backArrow from "../assets/back-arrow.png";
-import Header from "../header.jsx";
+import locationIcon from "../assets/location.png";
+import calendarIcon from "../assets/calendar.png";
 
 
 const reasonsBySpecialty = {
@@ -74,7 +75,7 @@ const Step2Reason = () => {
         </button>
 
         <div className="white-card">
-          <h2 className="step-title">Choose your appointment's reason</h2>
+          <h2 className="step-title">Select the reason for your appointment</h2>
           <div className="options-list">
             {reasons.map((r) => (
               <div key={r} className="option-row" onClick={() => handleSelectReason(r)}>
@@ -102,11 +103,21 @@ const Step2Reason = () => {
         </div>
         <div className="rdv-summary-details">
           <h5>Your appointment details</h5>
-          <p>📍 {doctor?.address}</p>
-          {day && <p>📅 {day} at {time}</p>}
-        </div>
-      </div>
 
+          <div className="rdv-detail">
+            <img src={locationIcon} alt="location" className="rdv-icon" />
+            <span>{doctor?.address}</span>
+          </div>
+
+          {day && (
+            <div className="rdv-detail">
+              <img src={calendarIcon} alt="calendar" className="rdv-icon" />
+              <span>{day} at {time}</span>
+            </div>
+          )}
+        </div>
+
+      </div>
       {/* Popup for Step3Confirm */}
       {showPopup && (
         <div className="popup">

@@ -163,6 +163,9 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+  text-align: center;      /* centre horizontalement le texte */
+  align-items: center; 
+
 }
 .doctor-meta h3 { margin: 0; 
   font-size: 1.5rem; 
@@ -171,11 +174,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .muted { color: #666; font-size: 1.2rem; margin: 0; }
 
-/* Appointment / RDV summary sits under the doctor card */
 
-
-/* Back button: keep translation but reduce large negative translate so it stays visible */
-/* Back arrow: fixed on the far left of the page */
 .back-btn {
   position: absolute;   /* absolute positioning */
   top: 35px;            /* adjust vertical position */
@@ -218,40 +217,20 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 500px;  /* balanced size */
 }
 
-.white-card {
-  max-width: 100%;   /* allow it to fully fill the right container */
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 
   .doc-summary { width: 100%; }
   .appointment-btn-wrapper { justify-content: center; }
 }
 
 /* Texte du médecin centré */
-.doctor-meta {
-  text-align: center;      /* centre horizontalement le texte */
-  display: flex;
-  flex-direction: column;  /* empile nom et rôle verticalement */
-  align-items: center; 
 
-}
 .doctor-meta p { 
   transform: translateX(-35px); /* remonte légèrement le texte */
   font-size: 1rem; 
 
 }
-.white-card {
-  max-width: 350px;  /* réduit la largeur maximale */
-  width: 100%;       /* garde la largeur responsive */
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;     /* assure un peu d'espace à l'intérieur */
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-}
+
 .white-card {
   max-width: 280px;  /* encore plus compacte */
   width: 100%;       
@@ -276,4 +255,39 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 
   transform: translateY(45px); /* supprime tout décalage qui augmente la hauteur */
+}
+.rdv-summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.rdv-summary-details h5 {
+  margin: 0 0 6px 0;
+  font-size: 1rem;
+  color: #000;
+}
+
+.rdv-detail {
+  display: flex;          /* horizontal row for icon + text */
+  align-items: center;    /* vertically align icon & text */
+  gap: 0.3rem;            /* space between icon and text */
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.rdv-detail span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* ensures long text doesn’t break layout */
+}
+
+.rdv-icon {
+  width: 0.92rem;   /* match font size */
+  height: 0.92rem;
+  object-fit: contain;
 }
