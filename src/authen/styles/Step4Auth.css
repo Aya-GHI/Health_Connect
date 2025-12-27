@@ -79,8 +79,17 @@ h1, h2, h3, h4, h5, h6 {
 .btn-yellow:hover {
     background-color: #ff8a2a; 
 }
+
 .booking-container {
-    background-color: #ffe5cc !important; /* force اللون */
+    background-color: #ffe5cc !important;
     min-height: 100vh;
+
+    display: flex;          
+    justify-content: center; /* center horizontally */
+    align-items: flex-start; /* align to top instead of vertical center */
+    padding-top: 80px;       /* move it a bit down from the very top */
+    padding-left: 20px;      /* optional horizontal spacing */
+    padding-right: 20px;
+    box-sizing: border-box;
 }
 

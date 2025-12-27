@@ -82,9 +82,7 @@ const Login = () => {
                 {showPassword ? "🙈" : "👁️"}
               </span>
             </div>
-            <div className="forgot-password">
-              <a href="#">Forget Password?</a>
-            </div>
+            
           </div>
 
           <button type="submit" className="login-btn">

@@ -7,6 +7,7 @@ import Header from "../header";
 import dermato1 from "../assets/dermato1.jpg";
 import dermato2 from "../assets/dermato2.jpg";
 import dermato3 from "../assets/dermato3.jpg";
+import locationIcon from '../assets/location.png';
 
 /* Months */
 const months = [
@@ -46,7 +47,7 @@ const dermatologues = [
     id: 3,
     name: "Dr. Yosra Jmour",
     role: "Dermatologist",
-    address: "Lake Tower Medical, Berges du Lac 2",
+    address: "Polyclinique La Marsa",
     img: dermato3,
     nextAppointment: "Wednesday, 18 May 2026",
   },
@@ -100,7 +101,10 @@ function Dermatologues() {
           <div className="doctor-meta">
             <h3>{doc.name}</h3>
             <p className="muted">{doc.role}</p>
-            <p className="muted">📍 {doc.address}</p>
+            <p className="muted">
+              <img src={locationIcon} alt="location" className="location-icon" /> 
+                          {doc.address}
+            </p>
 
             <div className="appointment-btn-wrapper">
               <button
@@ -154,7 +158,7 @@ function Dermatologues() {
                 onClick={() => handleShowTimes(doc)}
               >
                 <span className="next-text">
-                  Next available <strong>{doc.nextAppointment}</strong>
+                  Next available on <strong>{doc.nextAppointment}</strong>
                 </span>
                 <span className="arrow">›</span>
               </div>

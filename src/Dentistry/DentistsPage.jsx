@@ -7,6 +7,7 @@ import Header from "../header";
 import dentist1 from "../assets/dentist1.jpg";
 import dentist2 from "../assets/dentist2.jpg";
 import dentist3 from "../assets/dentist3.jpg";
+import locationIcon from '../assets/location.png';
 
 /* Months */
 const months = [
@@ -30,7 +31,7 @@ const dentists = [
     id: 1,
     name: "Dr. Helmi Jemli",
     role: "Dental Surgeon",
-    address: "Sabra & Chatila, Tunis",
+    address: "Mhamdia, Tunis",
     img: dentist2,
     nextAppointment: "Tuesday, 6 January 2026",
   },
@@ -100,7 +101,14 @@ function Dentists() {
           <div className="doctor-meta">
             <h3>{doc.name}</h3>
             <p className="muted">{doc.role}</p>
-            <p className="muted">📍 {doc.address}</p>
+            <p className="muted">
+              <img 
+                src={locationIcon} 
+                alt="location" 
+                className="location-icon" 
+              /> 
+              {doc.address}
+            </p>
 
             <div className="appointment-btn-wrapper">
               <button

@@ -7,6 +7,7 @@ import Header from "../header";
 import cardio1 from "../assets/cardio1.jpg";
 import cardio2 from "../assets/cardio2.jpg";
 import cardio3 from "../assets/cardio3.jpg";
+import locationIcon from '../assets/location.png';
 
 /* Months */
 const months = [
@@ -98,8 +99,10 @@ function Cardiologues() {
               <div className="doctor-meta">
                 <h3>{doc.name}</h3>
                 <p className="muted">{doc.role}</p>
-                <p className="muted">📍 {doc.address}</p>
-
+                <p className="muted">
+                  <img src={locationIcon} alt="location" className="location-icon" /> 
+                          {doc.address}
+                </p>
                 <div className="appointment-btn-wrapper">
                   <button
                     className="btn-appoint"
@@ -148,7 +151,7 @@ function Cardiologues() {
                     onClick={() => handleShowTimes(doc)}
                   >
                     <span className="next-text">
-                      Next available <strong>{doc.nextAppointment}</strong>
+                      Next available on <strong>{doc.nextAppointment}</strong>
                     </span>
                     <span className="arrow">›</span>
                   </div>
