@@ -107,10 +107,11 @@
 .doctor-info p {
   margin: 4px 0 0 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 17px;
   color: #6b7280;
   line-height: 1.2;
   text-align: center;
+  transform: translateX(-20px);
 }
 
 .doctor-buttons {

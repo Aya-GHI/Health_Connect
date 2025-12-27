@@ -1,4 +1,19 @@
 /* HEADER MAIN STYLE */
+/* ===== GLOBAL FONT STYLING ===== */
+
+/* Import fonts (add this once at the top) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+
+/* Make all normal text Inter */
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Make headings Playfair Display */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
 .header {
   background-color: #FFD8B0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -31,6 +46,7 @@
   height: 100%;        /* مهم */
   cursor: pointer;
   text-decoration: none;
+  transform: translateX(50px);
 }
 
 .logo-text {

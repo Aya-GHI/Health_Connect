@@ -28,29 +28,30 @@ const timeSlots = {
 const ophtalmologues = [
   {
     id: 1,
-    name: "Pr Imen AMMOUS",
-    role: "Ophtalmologue",
-    address: "Clinique Ettaoufik, 1er étage, Tunis,El Manar 2092 Tunis Tunisie",
+    name: "Prof. Imen Ammous",
+    role: "Optometrist",
+    address: "Ettaoufik Clinic, Tunis",
     img: ophtalmo1,
-    nextAppointment: "Tuesday 9 june 2026",
+    nextAppointment: "Tuesday, 9 June 2026",
   },
   {
     id: 2,
-    name: "Dr Sofiene FEKI ",
-    role: "Ophtalmologue",
-    address: "Érable médical près de la clinique Hannibal 3ème étage cabinet 335 Les Berges Du Lac 2 1053 Tunis Tunisie",
+    name: "Dr. Sofiene Feki",
+    role: "Ophthalmologist",
+    address: "Érable Medical, Berges du Lac 2",
     img: ophtalmo2,
-    nextAppointment: "Wednesday 18 June 2026",
+    nextAppointment: "Wednesday, 18 June 2026",
   },
   {
     id: 3,
-    name: "Dr Hatem EL AMRI ",
-    role: "Ophtalmologue",
-    address: "21 Avenue de l'environnement, Sidi Hassine, Tunis, App. n°7, 1 er étage.Sidi Hassine 1095 Tunis Tunisie",
+    name: "Dr. Hatem El Amri",
+    role: "Ophthalmologist",
+    address: "21 Env. Avenue, Sidi Hassine, Tunis",
     img: ophtalmo3,
-    nextAppointment: "Monday  5 May 2026",
+    nextAppointment: "Monday, 5 May 2026",
   },
 ];
+
 
 function Ophtalmologues() {
   const [currentMonth, setCurrentMonth] = useState(0);
@@ -87,7 +88,7 @@ function Ophtalmologues() {
   <Header />
 
   <div className="page-container">
-    <h1 className="title">Ophtalmologues</h1>
+    <h1 className="title">Ophthalmologists</h1>
 
     {ophtalmologues.map((doc) => (
       <div key={doc.id} className="doctor-card">

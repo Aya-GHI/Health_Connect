@@ -28,29 +28,30 @@ const timeSlots = {
 const pediatres = [
   {
     id: 1,
-    name: "Dr Rihab BEN OTHMAN ",
-    role: "Pédiatre",
-    address: "Complexe mayar mourouj 3 El Mourouj 3 2074 Ben arous Tunisie",
+    name: "Dr. Rihab Ben Othman",
+    role: "Pediatrician",
+    address: "Mayar Complex, El Mourouj 3",
     img: pedia1,
-    nextAppointment: "Lundi 6 Mars 2026",
+    nextAppointment: "Monday, 6 March 2026",
   },
   {
     id: 2,
-    name: "Dr Elyes LASSOUED",
-    role: "Pédiatre",
-    address: "Centre Médical La Rose, à côté de Clinique La Rose, Les Berges du Lac 2- Tunis Résidence n°25, Appartement A2-2 Les Berges Du Lac 2 1053 Tunis Tunisie",
+    name: "Dr. Elyes Lassoued",
+    role: "Pediatrician",
+    address: "La Rose Medical Center, Berges du Lac 2",
     img: pedia2,
-    nextAppointment: "jeudi 15 septembre 2026",
+    nextAppointment: "Thursday, 15 September 2026",
   },
   {
     id: 3,
-    name: "Dr Mohamed chawki GHARBI",
-    role: "Pédiatre",
-    address: "Mourouj 4 Centre Médical AL AHMADI - En face Terminus Ligne Métro 6 (1er étage) El Mourouj 4 2074 Ben arous Tunisie",
+    name: "Dr. Mohamed Chawki Gharbi",
+    role: "Pediatrician",
+    address: "Al Ahmadi Medical, El Mourouj 4",
     img: pedia3,
-    nextAppointment: "vendredi 5 decembre 2026",
+    nextAppointment: "Friday, 5 December 2026",
   },
 ];
+
 
 function Pediatres() {
   const [currentMonth, setCurrentMonth] = useState(0);
@@ -87,7 +88,7 @@ function Pediatres() {
   <Header />
 
   <div className="page-container">
-    <h1 className="title">Pédiatres</h1>
+    <h1 className="title">Pediatrician</h1>
 
     {pediatres.map((doc) => (
       <div key={doc.id} className="doctor-card">

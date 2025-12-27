@@ -29,28 +29,29 @@ const dentists = [
   {
     id: 1,
     name: "Dr. Helmi Jemli",
-    role: "Chirurgien dentiste",
-    address: "Sabra et chatila, Tunis",
+    role: "Dental Surgeon",
+    address: "Sabra & Chatila, Tunis",
     img: dentist2,
-    nextAppointment: "Tuesday 6 January 2026",
+    nextAppointment: "Tuesday, 6 January 2026",
   },
   {
     id: 2,
-    name: "Dr Cherifa Bahri",
-    role: "Médecin dentiste",
-    address: "Les Berges du Lac 2",
+    name: "Dr. Cherifa Bahri",
+    role: "Dentist",
+    address: "Berges du Lac 2",
     img: dentist1,
-    nextAppointment: "Monday 12 January 2026",
+    nextAppointment: "Monday, 12 January 2026",
   },
   {
     id: 3,
-    name: "Dr Yassine Messaoudi",
-    role: "Médecin dentiste",
-    address: "L'aouina, Tunis",
+    name: "Dr. Yassine Messaoudi",
+    role: "Dentist",
+    address: "L'Aouina, Tunis",
     img: dentist3,
-    nextAppointment: "Thursday 15 January 2026",
+    nextAppointment: "Thursday, 15 January 2026",
   },
 ];
+
 
 function Dentists() {
   const [currentMonth, setCurrentMonth] = useState(0);

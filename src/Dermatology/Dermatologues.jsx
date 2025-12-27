@@ -28,29 +28,30 @@ const timeSlots = {
 const dermatologues = [
   {
     id: 1,
-    name: "Dr Jihen HICHERI",
-    role: "Dermatologue",
-    address: " Iris Medical Center avenue Hedi Nouira Nasr1 (a coté de la Clinique Amilcar), 1 er étage cabinet 1.4 Cité Ennasr 1 2037 Ariana Tunisie",
+    name: "Dr. Jihen Hicheri",
+    role: "Dermatologist",
+    address: "Iris Medical, Cité Ennasr 1",
     img: dermato1,
-    nextAppointment: "mardi 9 février  2026",
+    nextAppointment: "Tuesday, 9 February 2026",
   },
   {
     id: 2,
-    name: "Dr Sami BAKER ",
-    role: "Dermatologue",
-    address: "Avicenne Medical (à coté de la clinique Avicenne), 2 rue mohammed Jammali , 3ème étage cabinet 12 El Manar 2 2092 Tunis Tunisie",
+    name: "Dr. Sami Baker",
+    role: "Dermatologist",
+    address: "Avicenne Medical, El Manar 2",
     img: dermato2,
-    nextAppointment: "Lundi  18 janvier 2026",
+    nextAppointment: "Monday, 18 January 2026",
   },
   {
     id: 3,
-    name: "Dr Yosra JMOUR ",
-    role: "Dermatologue",
-    address: "Centre Médical Lake Tower (près de la clinique Hanibal) 1er étage Cabinet C-8 Avenue Beji Caïd Essebsi , Lac 2 Les Berges Du Lac 2 1053 Tunis Tunisie",
+    name: "Dr. Yosra Jmour",
+    role: "Dermatologist",
+    address: "Lake Tower Medical, Berges du Lac 2",
     img: dermato3,
-    nextAppointment: "Mercredi  18 May 2026",
+    nextAppointment: "Wednesday, 18 May 2026",
   },
 ];
+
 
 function Dermatologues() {
   const [currentMonth, setCurrentMonth] = useState(0);
@@ -87,7 +88,7 @@ function Dermatologues() {
   <Header />
 
   <div className="page-container">
-    <h1 className="title">Dermatologues</h1>
+    <h1 className="title">Dermatologists</h1>
 
     {dermatologues.map((doc) => (
       <div key={doc.id} className="doctor-card">

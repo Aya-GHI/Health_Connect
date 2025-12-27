@@ -31,8 +31,8 @@ export default function DoctorDashboard() {
         <div className="left-panel">
 
           <div className="doctor-info card">
-            <h4>Dr. Karim Bouzid</h4>
-            <p>Médecin Dentiste</p>
+            <h4>Dr. Tarek Ben Chedli</h4>
+            <p>Dentist</p>
 
             <div className="doctor-buttons">
               <button className="add-btn">+ Add Availability</button>

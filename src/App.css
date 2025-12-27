@@ -1,4 +1,19 @@
 /* ================= GLOBAL STYLING ================= */
+/* ===== GLOBAL FONT STYLING ===== */
+
+/* Import fonts (add this once at the top) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap');
+
+/* Make all normal text Inter */
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Make headings Playfair Display */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+}
+
 html, body, #root {
     width: 100%;
     height: 100%;
@@ -68,21 +83,7 @@ html, body, #root {
     max-width: 500px;
 }
 
-.hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
 
-.hero-image img {
-    max-width: 90%;
-    height: auto;
-    border-radius: 20px;
-    position: relative;
-    z-index: 2;
-}
 
 /* ================= WAVE STYLING ================= */
 .custom-shape-divider-bottom {
@@ -114,6 +115,7 @@ html, body, #root {
     padding: 0 40px;
     position: relative;
     z-index: 10;
+    transform: translateY(60px);
 }
 
 .search-bar {
@@ -211,13 +213,13 @@ html, body, #root {
 .specialties-title {
     font-size: 2.5rem;
     color: #2d3436;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     font-weight: 700;
 }
 
 .specialties-subtitle {
     color: #636e72;
-    margin-bottom: 60px;
+    margin-bottom: 25px;
     font-size: 1.1rem;
 }
 
@@ -227,7 +229,7 @@ html, body, #root {
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 
@@ -327,45 +329,48 @@ html, body, #root {
 }
 
 .hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 10;
 }
 
 .hero-image img {
-  width: 120%;
-  max-width: 650px;
-  display: block;
-
-  transform: translateY(40px);
+  max-width: 1200px;
+  height: auto;
+  border-radius: 20px;
+  transform: translate(80px, 60px);
   transition: transform 0.4s ease;
-
   cursor: pointer;
 }
 
 .hero-image img:hover {
-  transform: translateY(15px);
+  transform: translate(50px, 10px);
 }
 
 
 
-    .search-bar-container {
-        margin: -40px auto 40px;
-        padding: 0 20px;
-    }
 
-    .search-bar {
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-    }
-    
-    .search-bar input {
-        width: 100%;
-    }
-    
-    .search-bar button {
-        width: 100%;
-    }
+.search-bar-container {
+    margin: -40px auto 40px;
+    padding: 0 20px;
+}
+
+.search-bar {
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+}
+
+.search-bar input {
+    width: 100%;
+}
+
+.search-bar button {
+    width: 100%;
+}
 
    /* ================= SPECIALTIES STYLING FIX ================= */
 .specialties-container {
@@ -475,7 +480,7 @@ html, body, #root {
 }
 
 h1, h2, h3 {
-  font-family: "Yeseva One", serif;
+    font-family: 'Playfair Display', serif;
 }
 
 .specialty-overlay {
@@ -504,4 +509,87 @@ h1, h2, h3 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+.specialty-card {
+  flex: 0 0 160px;
+  width: 160px;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fde6cf;
+
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.specialty-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.14);
+}
+
+/* video fills card */
+.specialty-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* ======= CIRCULAR VIDEO SPECIALTY CARDS ======= */
+
+.specialty-card {
+  flex: 0 0 140px;       /* smaller size */
+  width: 140px;
+  height: 140px;        /* equal width & height = circle */
+  border-radius: 50%;   /* 🔵 circle */
+  overflow: hidden;
+  cursor: pointer;
+  background: #fde6cf;
+  transform: translateY(-10px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.specialty-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.14);
+}
+
+/* video fills the circle */
+.specialty-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills circle nicely */
+  display: block;
+}
+
+/* ================= HERO IMAGE ================= */
+
+.hero {
+  overflow: visible; /* allow image to float */
+}
+
+.hero-image {
+  flex: 1.2; /* give image more space than text */
+  display: flex;
+  justify-content: flex-end; /* push image to the right */
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-image img {
+  max-width: 500px;   /* much smaller */
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+
+  /* slight right & down */
+  transform: translate(40px, 40px);
+
+  transition: transform 0.4s ease;
+}
+
+.hero-image img:hover {
+  transform: translate(40px, 10px);  /* subtle hover */
 }

@@ -26,12 +26,13 @@ import Pediatres from "./Pediatrics/Pediatres.jsx";
 
 import Header from "./header";
 
-import heart from "./assets/doc.png";
-import tooth from "./assets/doc.png";
-import bone from "./assets/doc.png";
-import skin from "./assets/doc.png";
 
 
+import heartVideo from "./assets/videos/heart.mp4";
+import eyesVideo from "./assets/videos/eyes.mp4";
+import toothVideo from "./assets/videos/tooth.mp4";
+import babyVideo from "./assets/videos/baby.mp4";
+import skinVideo from "./assets/videos/skin.mp4";
 // ======= SPECIALTIES SECTION =======
 function Specialties() {
   const navigate = useNavigate();
@@ -44,11 +45,14 @@ function Specialties() {
       </p>
 
       <div className="specialties-container">
-        <SpecialtyCard title="Cardiology" img={heart} route="/cardiologues" />
-        <SpecialtyCard title="Dentists" img={tooth} route="/dentists" />
-        <SpecialtyCard title="Ophtalmology" img={bone} route="/ophtalmologues" />
-        <SpecialtyCard title="Dermatology" img={skin} route="/dermatologues" />
-        <SpecialtyCard title="Pediatrics" img={tooth} route="/pediatres" />
+        <div className="specialties-container">
+        <SpecialtyCard video={heartVideo} route="/cardiologues" />
+        <SpecialtyCard video={toothVideo} route="/dentists" />
+        <SpecialtyCard video={eyesVideo} route="/ophtalmologues" />
+        <SpecialtyCard video={skinVideo} route="/dermatologues" />
+        <SpecialtyCard video={babyVideo} route="/pediatres" />
+        </div>
+
       </div>
     </section>
   );
@@ -56,25 +60,46 @@ function Specialties() {
 
 
 /* ===== Default Specialty Card (unchanged) ===== */
-function SpecialtyCard({ title, img, route }) {
+function SpecialtyCard({ video, route }) {
   const navigate = useNavigate();
+  const vidRef = useRef(null);
+
+  const handleEnter = () => {
+    if (vidRef.current) {
+      vidRef.current.currentTime = 0;
+      vidRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleLeave = () => {
+    if (vidRef.current) {
+      vidRef.current.pause();
+      vidRef.current.currentTime = 0;
+    }
+  };
 
   return (
     <div
       className="specialty-card"
-      style={{ backgroundImage: `url(${img})` }}
       onClick={() => navigate(route)}
       role="button"
-      aria-label={title}
       tabIndex={0}
-      onKeyDown={(e) => { if (e.key === "Enter") navigate(route); }}
+      onMouseEnter={handleEnter}
+      onFocus={handleEnter}
+      onMouseLeave={handleLeave}
+      onBlur={handleLeave}
     >
-      <div className="specialty-overlay">
-        <h4>{title}</h4>
-      </div>
+      <video
+        ref={vidRef}
+        src={video}
+        muted
+        playsInline
+        preload="metadata"
+      />
     </div>
   );
 }
+
 
 
 // ======= SEARCH BAR COMPONENT =======
@@ -164,26 +189,29 @@ function AppContent() {
 // ======= ROOT APP WITH ROUTING =======
 export default function App() {
   return (
-    <Router>
-      <Routes>
-      
-        <Route path="/" element={<AppContent />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/register-doctor" element={<RegisterDoctor />} />
-        <Route path="/login-doctor" element={<LoginDoctor />} />
-        <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+      <div className="font-sans">
+
+        <Router>
+          <Routes>
         
-        <Route path="/dentists" element={<Dentists />} />
-        <Route path="/booking/reason" element={<Step2Reason />} />
-        <Route path="/booking/auth" element={<Step4Auth />} />
-        <Route path="/bookingsuccess" element={<BookingSuccess />} />
-        <Route path="/cardiologues" element={<Cardiologues />} />
-        <Route path="/ophtalmologues" element={<Ophtalmologues />} />
-        <Route path="/dermatologues" element={<Dermatologues />} />
-        <Route path="/pediatres" element={<Pediatres />} />
-       
-      </Routes>
-    </Router>
+            <Route path="/" element={<AppContent />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/register-doctor" element={<RegisterDoctor />} />
+            <Route path="/login-doctor" element={<LoginDoctor />} />
+            <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+            
+            <Route path="/dentists" element={<Dentists />} />
+            <Route path="/booking/reason" element={<Step2Reason />} />
+            <Route path="/booking/auth" element={<Step4Auth />} />
+            <Route path="/bookingsuccess" element={<BookingSuccess />} />
+            <Route path="/cardiologues" element={<Cardiologues />} />
+            <Route path="/ophtalmologues" element={<Ophtalmologues />} />
+            <Route path="/dermatologues" element={<Dermatologues />} />
+            <Route path="/pediatres" element={<Pediatres />} />
+          
+          </Routes>
+        </Router>
+      </div>
   );
 }
