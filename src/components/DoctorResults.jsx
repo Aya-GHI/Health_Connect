@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import locationIcon from "./assets/location.png"; // adapte le chemin si nécessaire
-import "./App.css"; // pour utiliser ton CSS déjà existant
+import locationIcon from "../assets/location.png"; // adapte le chemin si nécessaire
+import "../App.css"; // pour utiliser ton CSS déjà existant
 import doctorImages from "./doctorImages"; // Adjust path if needed
 
 const timeSlots = {

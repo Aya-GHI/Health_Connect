@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom"; 
-import logo from "./assets/logo.png";
-import "./authen/styles/Header.css";
+import logo from "../assets/logo.png";
+import "./Header.css";
 
 
 export default function Header() {

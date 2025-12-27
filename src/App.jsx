@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
-import DoctorResults from "./DoctorResults"; // juste au-dessus de SearchBar
+import DoctorResults from "./components/DoctorResults.jsx"; // juste au-dessus de SearchBar
 
 
 import Login from "./authen/Login.jsx";
@@ -11,20 +11,20 @@ import LoginDoctor from "./authen/LoginDoctor.jsx";
 import RegisterDoctor from "./authen/RegisterDoctor.jsx";
 import DoctorDashboard from "./doctordashboard/dashboard.jsx";
 
-import doctorsImg from "./assets/doc.png";
+import doctorsImg from "./assets/doctors/doc.png";
 
-import Dentists from "./Dentistry/DentistsPage.jsx";
-import Step2Reason from "./Dentistry/Step2Reason";
-import Step4Auth from "./Dentistry/Step4Auth.jsx";
-import BookingSuccess from "./Dentistry/BookingSuccess.jsx";
+import Dentists from "./specialties/DentistsPage.jsx";
+import Step2Reason from "./Appointbooking/Step2Reason.jsx";
+import Step4Auth from "./Appointbooking/Step4Auth.jsx";
+import BookingSuccess from "./Appointbooking/BookingSuccess.jsx";
 
 //import hanine 
-import Cardiologues from "./Cardiology/Cardiologues.jsx";
-import Ophtalmologues from "./Ophtalmology/Ophtalmologues.jsx";
-import Dermatologues from "./Dermatology/Dermatologues.jsx";
-import Pediatres from "./Pediatrics/Pediatres.jsx";
+import Cardiologues from "./specialties/Cardiologues.jsx";
+import Ophtalmologues from "./specialties/Ophtalmologues.jsx";
+import Dermatologues from "./specialties/Dermatologues.jsx";
+import Pediatres from "./specialties/Pediatres.jsx";
 
-import Header from "./header";
+import Header from "./components/header.jsx";
 
 import heartVideo from "./assets/videos/heart.mp4";
 import eyesVideo from "./assets/videos/eyes.mp4";

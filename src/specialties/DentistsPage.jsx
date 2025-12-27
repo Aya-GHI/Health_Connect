@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // نزيدو هذي للـ Navigation
-import "../specialties/specialties.css";
+import "./specialties.css";
 
-import Header from "../header";
+import Header from "../components/header";
 
-import dentist1 from "../assets/dentist1.jpg";
-import dentist2 from "../assets/dentist2.jpg";
-import dentist3 from "../assets/dentist3.jpg";
+import dentist1 from "../assets/doctors/dentist1.jpg";
+import dentist2 from "../assets/doctors/dentist2.jpg";
+import dentist3 from "../assets/doctors/dentist3.jpg";
 import locationIcon from '../assets/location.png';
 import backArrow from "../assets/back-arrow.png"; 
 

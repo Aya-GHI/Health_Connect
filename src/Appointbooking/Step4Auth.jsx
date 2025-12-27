@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../authen/styles/Step4Auth.css";
+import "./Step4Auth.css";
 import backArrow from "../assets/back-arrow.png";
 
 

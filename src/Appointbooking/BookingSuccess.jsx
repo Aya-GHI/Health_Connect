@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../authen/styles/BookingSuccess.css";
+import "./BookingSuccess.css";
 
 const BookingSuccess = () => {
   const location = useLocation();

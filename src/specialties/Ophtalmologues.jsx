@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../specialties/specialties.css";
+import "./specialties.css";
 
-import Header from "../header";
+import Header from "../components/header";
 
-import ophtalmo1 from "../assets/ophtalmo1.jpg";
-import ophtalmo2 from "../assets/ophtalmo2.jpg";
-import ophtalmo3 from "../assets/ophtalmo3.jpg";
+import ophtalmo1 from "../assets/doctors/ophtalmo1.jpg";
+import ophtalmo2 from "../assets/doctors/ophtalmo2.jpg";
+import ophtalmo3 from "../assets/doctors/ophtalmo3.jpg";
 import locationIcon from '../assets/location.png';
 import backArrow from "../assets/back-arrow.png"; 
 

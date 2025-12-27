@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../authen/styles/Step2Reason.css";
-import "../authen/styles/Step3Confirm.css"; // keep styles for the popup
+import "./Step2Reason.css";
+import "./Step3Confirm.css"; // keep styles for the popup
 import backArrow from "../assets/back-arrow.png";
 import locationIcon from "../assets/location.png";
 import calendarIcon from "../assets/calendar.png";

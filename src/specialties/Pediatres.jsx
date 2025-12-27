@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../specialties/specialties.css";
+import "./specialties.css";
 
-import Header from "../header";
+import Header from "../components/header";
 
-import dermato1 from "../assets/dermato1.jpg";
-import dermato2 from "../assets/dermato2.jpg";
-import dermato3 from "../assets/dermato3.jpg";
+import pedia1 from "../assets/doctors/pedia1.jpg";
+import pedia2 from "../assets/doctors/pedia2.jpg";
+import pedia3 from "../assets/doctors/pedia3.jpg";
 import locationIcon from '../assets/location.png';
 import backArrow from "../assets/back-arrow.png"; 
+
 
 /* Months */
 const months = [
@@ -17,7 +18,7 @@ const months = [
   "September", "October", "November", "December"
 ];
 
-/*  time slots */
+/* Fake time slots */
 const timeSlots = {
   Monday: ["11:00", "11:15", "11:30", "11:45", "14:30", "14:45", "15:15", "15:30"],
   Tuesday: ["09:30", "09:45", "10:00", "10:15", "10:30", "10:45", "11:00", "11:15"],
@@ -27,35 +28,35 @@ const timeSlots = {
 };
 
 /* Cardiologues Data */
-const dermatologues = [
+const pediatres = [
   {
     id: 1,
-    name: "Dr. Jihen Hicheri",
-    role: "Dermatologist",
-    address: "Iris Medical, Cité Ennasr 1",
-    img: dermato1,
-    nextAppointment: "Tuesday, 9 February 2026",
+    name: "Dr. Rihab Ben Othman",
+    role: "Pediatrician",
+    address: "Mayar Complex, El Mourouj 3",
+    img: pedia1,
+    nextAppointment: "Monday, 6 March 2026",
   },
   {
     id: 2,
-    name: "Dr. Sami Baker",
-    role: "Dermatologist",
-    address: "Avicenne Medical, El Manar 2",
-    img: dermato2,
-    nextAppointment: "Monday, 18 January 2026",
+    name: "Dr. Elyes Lassoued",
+    role: "Pediatrician",
+    address: "Rose Med Center, Ben Arous",
+    img: pedia2,
+    nextAppointment: "Thursday, 15 September 2026",
   },
   {
     id: 3,
-    name: "Dr. Yosra Jmour",
-    role: "Dermatologist",
-    address: "Polyclinique La Marsa",
-    img: dermato3,
-    nextAppointment: "Wednesday, 18 May 2026",
+    name: "Dr. Mohamed Chawki Gharbi",
+    role: "Pediatrician",
+    address: "Al Ahmadi Medical, El Mourouj 4",
+    img: pedia3,
+    nextAppointment: "Friday, 5 December 2026",
   },
 ];
 
 
-function Dermatologues() {
+function Pediatres() {
   const [currentMonth, setCurrentMonth] = useState(0);
   const [showTimes, setShowTimes] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -70,7 +71,7 @@ function Dermatologues() {
   navigate("/booking/reason", {
     state: {
         doctor: selectedDoc,
-        specialty: "dermatology",
+        specialty: "pediatrics",
         time: time,
         day: day,
         month: months[currentMonth],
@@ -88,7 +89,7 @@ function Dermatologues() {
   return (
     <>
   <Header />
-   <button
+  <button
   style={{
     position: "fixed",
     top: "120px",   // keep a bit down from the header
@@ -108,9 +109,9 @@ function Dermatologues() {
 </button>
 
   <div className="page-container">
-    <h1 className="title">Dermatologists</h1>
+    <h1 className="title">Pediatrician</h1>
 
-    {dermatologues.map((doc) => (
+    {pediatres.map((doc) => (
       <div key={doc.id} className="doctor-card">
 
         {/* LEFT: Doctor info */}
@@ -124,7 +125,6 @@ function Dermatologues() {
               <img src={locationIcon} alt="location" className="location-icon" /> 
                           {doc.address}
             </p>
-
             <div className="appointment-btn-wrapper">
               <button
                 className="btn-appoint"
@@ -177,7 +177,7 @@ function Dermatologues() {
                 onClick={() => handleShowTimes(doc)}
               >
                 <span className="next-text">
-                  Next available on <strong>{doc.nextAppointment}</strong>
+                  Next available on<strong>{doc.nextAppointment}</strong>
                 </span>
                 <span className="arrow">›</span>
               </div>
@@ -226,4 +226,4 @@ function Dermatologues() {
   );
 }
 
-export default Dermatologues;
+export default Pediatres;
