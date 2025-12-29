@@ -11,6 +11,9 @@ import LoginDoctor from "./authen/LoginDoctor.jsx";
 import RegisterDoctor from "./authen/RegisterDoctor.jsx";
 import DoctorDashboard from "./doctordashboard/dashboard.jsx";
 
+import HelpCenter from "./components/HelpCenter.jsx";
+
+
 import doctorsImg from "./assets/doctors/doc.png";
 
 import Dentists from "./specialties/DentistsPage.jsx";
@@ -183,6 +186,9 @@ export default function App() {
             <Route path="/register-doctor" element={<RegisterDoctor />} />
             <Route path="/login-doctor" element={<LoginDoctor />} />
             <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+
+            <Route path="/help" element={<HelpCenter />} />
+
             
             <Route path="/dentists" element={<Dentists />} />
             <Route path="/booking/reason" element={<Step2Reason />} />

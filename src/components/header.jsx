@@ -29,7 +29,8 @@ export default function Header() {
           </button>
 
         {/* Help center link can stay */}
-        <a href="#">HELP CENTER</a>
+        <Link to="/help">HELP CENTER</Link>
+
 
         {/* Login button */}
         <button className="login-btn" onClick={() => navigate("/login")}>

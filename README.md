@@ -1,18 +1,66 @@
-# React + Vite
+# Health_Connect 🏥
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Health_Connect** is a professional healthcare management platform designed to bridge the gap between patients and specialized medical professionals in Tunisia.
 
-Currently, two official plugins are available:
+## 🚀 Project Overview
+This platform provides a streamlined interface for patients to browse medical specialties, book appointments, and for doctors to manage their professional profiles and patient activities.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
+* **Dual Authentication**: Separate login and registration flows for both **Patients** and **Doctors**.
+* **Medical Specialties**: Organized modules for various healthcare fields:
+    * **Cardiology** 🫀 - Heart and vascular health.
+    * **Dentistry** 🦷 - Dental care and oral hygiene.
+    * **Dermatology** ✨ - Skin, hair, and nail treatments.
+    * **Ophtalmology** 👁️ - Eye care and vision health.
+    * **Pediatrics** 👶 - Specialized care for infants and children.
+* **Doctor Dashboard**: A dedicated workspace for doctors to manage their schedules and patient data.
+* **Responsive UI**: Fully optimized for mobile, tablet, and desktop views.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Frontend
+* **Framework**: React.js (Vite)
+* **Styling**: CSS3 / Modern UI Design
+* **State Management**: React Hooks
 
-Note: This will impact Vite dev & build performances.
+### Backend & Database 🔙
+* **Framework**: Flask (Python) 🐍
+* **Main Entry**: `app.py`
+* **Database**: MySQL 🐬
+* **API Style**: RESTful API
 
-## Expanding the ESLint configuration
+## 📂 Project Structure
+* `src/authen/`: Authentication components (Login/Register).
+* `src/[Specialty Name]/`: Folders for each medical field (e.g., `src/Cardiology`).
+* `app.py`: The main Flask application file handling routes and DB logic.
+* `requirements.txt`: Python dependencies.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ⚙️ Installation & Setup
+
+### 1. Clone the repository
+```bash
+git clone [https://github.com/Aya-GHI/Health_Connect.git](https://github.com/Aya-GHI/Health_Connect.git)
+
+2. Frontend Setup:
+# From the root directory
+npm install
+npm run dev
+
+3. Backend (Flask) & MySQL Setup
+   1.Create a MySQL database named health_connect.
+
+   
+
+    2. Install Python dependencies:
+    pip install flask flask-mysql mysql-connector-python  # add any other libs you use
+
+    3. Run the Flask server:
+    python app.py
+    python searchbar.py
+
+    👥 Authors
+Aya GHI - Developer - Aya-GHI
+
+Hanine157 - Developer - Hanine157
+
+Created with ❤️ for better healthcare accessibility.

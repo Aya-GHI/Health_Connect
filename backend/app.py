@@ -2,11 +2,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
 import hashlib
+from datetime import datetime
 
 app = Flask(__name__)
+
+# ✅ CORS صح
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# ================= DATABASE =================
+# ============ DATABASE ============
 db = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -14,100 +17,94 @@ db = mysql.connector.connect(
     database="health_connect"
 )
 
-cursor = db.cursor(dictionary=True)
-
-# ================= UTILS =================
+# ============ UTILS ============
 def hash_password(password):
-    return hashlib.sha256(password.encode("utf-8")).hexdigest()
+    return hashlib.sha256(password.encode()).hexdigest()
 
-# ================= TEST =================
+# ============ TEST ============
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({"status": "backend working"}), 200
 
 
-# ================= REGISTER =================
-@app.route("/register", methods=["POST"])
+# ============ REGISTER ============
+@app.route("/register", methods=["POST", "OPTIONS"])
 def register():
+    if request.method == "OPTIONS":
+        return "", 200  # ✅ مهم برشا
+
     try:
         data = request.get_json()
-        print("REGISTER DATA:", data)
+        print("📥 REGISTER DATA:", data)
 
-        if not data:
-            return jsonify({"message": "No data received"}), 400
+        datetime.strptime(data["dateOfBirth"], "%Y-%m-%d")
 
-        hashed_password = hash_password(data["password"])
+        cursor = db.cursor(buffered=True)
 
-        sql = """
-        INSERT INTO users (
-            first_name, last_name, email, phone,
-            date_of_birth, gender, password
-        )
-        VALUES (%s,%s,%s,%s,%s,%s,%s)
-        """
+        cursor.execute("SELECT id FROM users WHERE email=%s", (data["email"],))
+        if cursor.fetchone():
+            return jsonify({"message": "Email already exists"}), 409
 
-        cursor.execute(sql, (
+        cursor.execute("""
+            INSERT INTO users
+            (first_name, last_name, email, phone, date_of_birth, gender, password)
+            VALUES (%s,%s,%s,%s,%s,%s,%s)
+        """, (
             data["firstName"],
             data["lastName"],
             data["email"],
             data["phone"],
-            data["dateOfBirth"],  # YYYY-MM-DD
+            data["dateOfBirth"],
             data["gender"],
-            hashed_password
+            hash_password(data["password"])
         ))
 
         db.commit()
-
         return jsonify({"message": "User registered successfully"}), 201
 
-    except mysql.connector.Error as err:
-        print("MYSQL ERROR:", err)
-        return jsonify({"message": "Database error"}), 500
-
     except Exception as e:
-        print("GENERAL ERROR:", e)
+        print("🔥 REGISTER ERROR:", e)
         return jsonify({"message": str(e)}), 500
 
 
-# ================= LOGIN =================
-@app.route("/login", methods=["POST"])
+# ============ LOGIN ============
+@app.route("/login", methods=["POST", "OPTIONS"])
 def login():
+    if request.method == "OPTIONS":
+        return "", 200  # ✅ مهم
+
     try:
         data = request.get_json()
-        print("LOGIN DATA:", data)
+        print("📥 LOGIN DATA:", data)
 
-        if not data:
-            return jsonify({"message": "No data received"}), 400
+        email = data.get("email", "").strip()
+        password = data.get("password", "").strip()
 
-        hashed_password = hash_password(data["password"])
-
-        cursor.execute(
-            """
-            SELECT id, first_name, last_name, email
-            FROM users
-            WHERE email=%s AND password=%s
-            """,
-            (data["email"], hashed_password)
-        )
-
+        cursor = db.cursor(dictionary=True, buffered=True)
+        cursor.execute("SELECT * FROM users WHERE email=%s", (email,))
         user = cursor.fetchone()
 
-        if user:
-            return jsonify({
-                "success": True,
-                "user": user
-            }), 200
+        if not user:
+            return jsonify({"message": "Email not found"}), 401
+
+        if user["password"] != hash_password(password):
+            return jsonify({"message": "Wrong password"}), 401
 
         return jsonify({
-            "success": False,
-            "message": "Invalid email or password"
-        }), 401
+            "success": True,
+            "user": {
+                "id": user["id"],
+                "email": user["email"]
+            }
+        }), 200
 
     except Exception as e:
-        print("LOGIN ERROR:", e)
+        print("🔥 LOGIN ERROR:", e)
         return jsonify({"message": str(e)}), 500
 
 
-# ================= RUN =================
+# ============ RUN ============
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
+
+
